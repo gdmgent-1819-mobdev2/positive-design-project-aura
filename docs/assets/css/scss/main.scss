@@ -4,6 +4,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 // 1. Abstracts
@@ -14,4 +15,9 @@ html, body {
 @import 'base/base';
 
 // 3. Components
-@import 'components/header';
+@import 'components/header',
+        'components/pageblock',
+        'components/badge';
+
+// 4. Layout
+@import 'layout/flex';

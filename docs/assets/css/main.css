@@ -3,6 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -43,12 +44,12 @@ h6 {
 
 p {
   font-family: "Montserrat", sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
 }
 
 .header {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: space-between;
   overflow-x: hidden;
@@ -56,6 +57,10 @@ p {
 .header__left {
   height: 100%;
   width: 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 .header__right {
   height: 100%;
@@ -69,8 +74,68 @@ p {
   position: absolute;
   right: 0;
   top: 0;
+  height: 80%;
   z-index: -1;
   margin: 0;
+}
+.header__right .pixel3 {
+  height: 75%;
+}
+
+.pageblock {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+.pageblock__image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  box-sizing: border-box;
+}
+.pageblock__image .background {
+  z-index: -1;
+}
+.pageblock__image .h-75 {
+  height: 75%;
+}
+.pageblock__image .topleft {
+  position: absolute;
+  top: 0;
+  left: -1%;
+}
+.pageblock__image .topright {
+  position: absolute;
+  top: 0;
+  right: -1%;
+}
+.pageblock__image .deviceimg {
+  height: 500px;
+}
+.pageblock__text {
+  width: 50%;
+  position: relative;
+  box-sizing: border-box;
+  padding: 6%;
+  text-align: left;
+}
+
+.badge {
+  height: 60px;
+}
+
+.flex {
+  display: flex;
+}
+.flex--center {
+  justify-content: center;
+  align-items: center;
+}
+.flex--col {
+  flex-flow: column nowrap;
 }
 
 /*# sourceMappingURL=main.css.map */
