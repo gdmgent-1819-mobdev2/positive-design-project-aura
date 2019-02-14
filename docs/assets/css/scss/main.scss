@@ -1,0 +1,17 @@
+
+// Reset
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+// 1. Abstracts
+@import 'abstracts/fonts',
+        'abstracts/variables';
+
+// 2. Base
+@import 'base/base';
+
+// 3. Components
+@import 'components/header';

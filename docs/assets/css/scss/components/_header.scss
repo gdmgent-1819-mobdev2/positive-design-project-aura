@@ -1,0 +1,31 @@
+.header {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  overflow-x: hidden;
+
+  &__left {
+    height: 100%;
+    width: 50%;
+  }
+
+  &__right {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    .bgShape {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: -1;
+      margin: 0;
+    }
+
+    .pixel3 {
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700|Montserrat:400,700");
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+h1 {
+  font-family: "Montserrat Alternates", "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 41px;
+}
+
+h2 {
+  font-family: "Montserrat Alternates", "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+}
+
+h3 {
+  font-family: "Montserrat Alternates", "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 33px;
+}
+
+h4 {
+  font-family: "Montserrat Alternates", "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+h5 {
+  font-family: "Montserrat Alternates", "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+h6 {
+  font-family: "Montserrat Alternates", "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 6px;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.header {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  overflow-x: hidden;
+}
+.header__left {
+  height: 100%;
+  width: 50%;
+}
+.header__right {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.header__right .bgShape {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  margin: 0;
+}
+
+/*# sourceMappingURL=main.css.map */
