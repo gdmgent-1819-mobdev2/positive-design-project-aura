@@ -127,6 +127,31 @@ p {
   height: 60px;
 }
 
+.footer {
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: space-around;
+  padding: 4%;
+  width: 100vw;
+  box-sizing: border-box;
+}
+.footer__left {
+  width: 33%;
+}
+.footer__middle {
+  width: 33%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.footer__right {
+  width: 33%;
+  text-align: right;
+}
+.footer__logo {
+  width: 40%;
+}
+
 .flex {
   display: flex;
 }

@@ -17,7 +17,8 @@ html, body {
 // 3. Components
 @import 'components/header',
         'components/pageblock',
-        'components/badge';
+        'components/badge',
+        'components/footer';
 
 // 4. Layout
 @import 'layout/flex';
