@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
-import Card from './Card'
+
 
 const styles = StyleSheet.create({
     nav: {
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
 
 const Navigation = () => (
     <View style={styles.nav}>
-      <Text>Test</Text>
-      <Text>Test</Text>
-      <Text>Test</Text>
+        <Text>Test</Text>
+        <Text>Test</Text>
+        <Text>Test</Text>
     </View>
 )
 
