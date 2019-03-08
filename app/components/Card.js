@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   card: {
     minWidth: '80%',
-    maxHeight: '20%',
+    height: '100%',
     backgroundColor: '#48efbe',
     borderRadius: 10,
     flex: 1,

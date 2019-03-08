@@ -6,14 +6,16 @@ import Card from './Card'
 const styles = StyleSheet.create({
     nav: {
         width: '90%',
-        height: 70,
+        maxHeight: 70,
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'nowrap',
         justifyContent: 'space-evenly',
-        backgroundColor: 'red',
-        position: 'absolute',
-        bottom: 0,
+        backgroundColor: '#2B1576',
+        alignItems: 'center',
+        // Position en bottom weggelaten om flex zijn werk te laten doen
+        // position: 'absolute',
+        // bottom: 0,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
 
@@ -22,7 +24,9 @@ const styles = StyleSheet.create({
 
 const Navigation = () => (
     <View style={styles.nav}>
-
+      <Text>Test</Text>
+      <Text>Test</Text>
+      <Text>Test</Text>
     </View>
 )
 

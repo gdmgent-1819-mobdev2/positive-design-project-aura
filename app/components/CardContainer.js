@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, ScrollView, StyleSheet } from 'react-native'
 
 import Card from './Card'
 
 const styles = StyleSheet.create({
   container: {
     minWidth: '100%',
-    height: '40%',
+    maxHeight: '30%',
     overflow: 'scroll',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'nowrap',
+    alignItems: 'center',
   }
 })
 
