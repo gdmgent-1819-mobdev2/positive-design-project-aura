@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
+import NavigationItem from './NavigationItem'
+
 
 const styles = StyleSheet.create({
     nav: {
@@ -17,16 +19,31 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
     },
+<<<<<<< HEAD
     // profile: {
     //     backgroundImage: `url(${Profile})`
     // }
+=======
+
+    text: {
+        color: 'white',
+    }
+>>>>>>> bcce26453f3bb2888a244b4592d9d5fc80c5be7b
 })
 
 const Navigation = () => (
     <View style={styles.nav}>
+<<<<<<< HEAD
         <Image></Image>
         <Image source={require('../../../images/icons/navigation/profile.svg')}></Image>
         <Image></Image>
+=======
+
+        <NavigationItem itemName='user' />
+        <NavigationItem itemName='home' />
+        <NavigationItem itemName='statistic' />
+
+>>>>>>> bcce26453f3bb2888a244b4592d9d5fc80c5be7b
     </View>
 )
 
