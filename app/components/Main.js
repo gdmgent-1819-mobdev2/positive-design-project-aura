@@ -5,7 +5,7 @@ import { Title, SubTitle } from './textComponents/'
 import { backGradient } from '../utils/styles/Colors'
 import Navigation from './Navigation'
 import { LinearGradient } from 'expo'
-
+import TaskContainer from './TaskContainer'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -32,8 +32,7 @@ export class Main extends Component {
           <SubTitle text={'How are you feeling today?'} />
 
         </View>
-
-        <CardContainer />
+        <TaskContainer />
         <Navigation />
 
       </LinearGradient>

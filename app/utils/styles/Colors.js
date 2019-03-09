@@ -6,6 +6,7 @@ export const okayCardGradient = ['#4091FF', '#0050FF']
 export const stressGradient = ['#FFBD40', '#FFEB00']
 export const anxiousGradient = ['#F50097', '#FF34EF']
 export const exhaustedGradient = ['#0009F5', '#8388ff']
+
 // Gradients
 export const backGradient = [midPurple, darkPurple]
 
