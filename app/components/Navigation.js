@@ -16,15 +16,17 @@ const styles = StyleSheet.create({
         // bottom: 0,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
-
-    }
+    },
+    // profile: {
+    //     backgroundImage: `url(${Profile})`
+    // }
 })
 
 const Navigation = () => (
     <View style={styles.nav}>
-        <Text>Test</Text>
-        <Text>Test</Text>
-        <Text>Test</Text>
+        <Image></Image>
+        <Image source={require('../../../images/icons/navigation/profile.svg')}></Image>
+        <Image></Image>
     </View>
 )
 
