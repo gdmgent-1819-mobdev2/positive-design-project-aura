@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-
+import NavigationItem from './NavigationItem'
 
 
 const styles = StyleSheet.create({
@@ -18,15 +18,20 @@ const styles = StyleSheet.create({
         // bottom: 0,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
+    },
 
+    text: {
+        color: 'white',
     }
 })
 
 const Navigation = () => (
     <View style={styles.nav}>
-        <Text>Test</Text>
-        <Text>Test</Text>
-        <Text>Test</Text>
+
+        <NavigationItem itemName='user' />
+        <NavigationItem itemName='home' />
+        <NavigationItem itemName='statistic' />
+
     </View>
 )
 

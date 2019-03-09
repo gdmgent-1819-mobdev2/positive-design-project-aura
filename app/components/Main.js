@@ -28,11 +28,14 @@ export class Main extends Component {
       <LinearGradient colors={backGradient} style={styles.container}>
         {/* Insert top text here */}
         <View style={styles.textContainer}>
-          <Title text={'Welcome, User'}/>
+          <Title text={'Welcome, User'} />
           <SubTitle text={'How are you feeling today?'} />
+
         </View>
+
         <CardContainer />
         <Navigation />
+
       </LinearGradient>
 
     )
