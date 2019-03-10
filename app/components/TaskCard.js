@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { LinearGradient } from 'expo'
 import { highLight, mainTextColor, stressGradient } from '../utils/styles'
 
@@ -25,13 +25,14 @@ const styles = StyleSheet.create({
 })
 
 const TaskCard = ({ text, gradient }) => (
-    <LinearGradient colors={gradient} style={styles.container}>
-        <View style={styles.taskcard}>
+    <TouchableOpacity>
 
-
-            <Text>{text}</Text>
-        </View>
-    </LinearGradient>
+        <LinearGradient colors={gradient} style={styles.container}>
+            <View style={styles.taskcard}>
+                <Text>{text}</Text>
+            </View>
+        </LinearGradient>
+    </TouchableOpacity>
 )
 
 export default TaskCard
