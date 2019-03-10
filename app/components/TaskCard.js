@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
 
 const TaskCard = ({ text, gradient }) => (
     <TouchableOpacity>
-
         <LinearGradient colors={gradient} style={styles.container}>
             <View style={styles.taskcard}>
                 <Text>{text}</Text>

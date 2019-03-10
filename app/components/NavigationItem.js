@@ -30,11 +30,7 @@ const styles = StyleSheet.create({
 const NavigationItem = ({ itemName }) => (
 
     <TouchableOpacity>
-
-
-        <Image style={styles.nav__item} source={profileImage} />
-
-
+        <Image style={styles.nav__item} source={homeImage} />
     </TouchableOpacity>
 )
 

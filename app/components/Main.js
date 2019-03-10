@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
+import { createStackNavigator, createAppContainer } from 'react-navigation'; // Version can be specified in package.json
 import CardContainer from './CardContainer'
 import { Title, SubTitle } from './textComponents/'
 import { backGradient } from '../utils/styles/Colors'
@@ -21,6 +22,20 @@ const styles = StyleSheet.create({
     height: 'auto',
   }
 });
+
+class HomeScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
+      </View>
+    );
+  }
+}
 
 export class Main extends Component {
   render() {

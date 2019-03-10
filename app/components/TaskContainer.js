@@ -19,8 +19,6 @@ const styles = StyleSheet.create({
     task__excercise: {
 
     }
-
-
 })
 
 const TaskContainer = () => (

@@ -27,11 +27,9 @@ const styles = StyleSheet.create({
 
 const Navigation = () => (
     <View style={styles.nav}>
-
         <NavigationItem itemName='user' />
         <NavigationItem itemName='home' />
         <NavigationItem itemName='statistic' />
-
     </View>
 )
 

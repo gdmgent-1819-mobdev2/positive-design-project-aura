@@ -12,5 +12,4 @@ const style = StyleSheet.create({
 const SubTitle = ({text}) => (
   <Text style={style.subtitle}>{ text }</Text>
 )
-
 export default SubTitle
