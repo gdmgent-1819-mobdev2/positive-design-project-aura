@@ -3,9 +3,15 @@ import { Text, StyleSheet } from 'react-native'
 
 const style = StyleSheet.create({
   subtitle: {
-    fontSize: 24,
-    fontWeight: '500',
+    fontSize: 22,
+    fontWeight: '300',
     textAlign: 'left',
+    color: '#ffffff',
+    textAlign: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginTop: 10,
+    marginBottom: 10,
   }
 })
 
