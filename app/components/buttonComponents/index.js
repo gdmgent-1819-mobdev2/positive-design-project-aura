@@ -1,5 +1,5 @@
 import NextExerciseButton from './NextExerciseButton'
-import DoneButton from './DoneButton'
+import DoneButton from './Done'
 
 export {
   NextExerciseButton,
