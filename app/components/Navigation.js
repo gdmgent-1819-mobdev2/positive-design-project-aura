@@ -19,17 +19,16 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     },
-
     text: {
         color: 'white',
     }
 })
 
-const Navigation = () => (
+const Navigation = ({ route }) => (
     <View style={styles.nav}>
-        <NavigationItem itemName='user' />
-        <NavigationItem itemName='home' />
-        <NavigationItem itemName='statistic' />
+        <NavigationItem icon='user' route={route} />
+        <NavigationItem icon='user' route={route} />
+        <NavigationItem icon='user' route={route} />
     </View>
 )
 

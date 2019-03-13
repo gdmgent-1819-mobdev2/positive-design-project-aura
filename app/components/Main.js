@@ -24,9 +24,21 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     height: 'auto',
   },
-  test: {
-    color: 'yellow',
-  }
+  navContainer: {
+    width: '90%',
+    maxHeight: 70,
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-evenly',
+    backgroundColor: '#2B1576',
+    alignItems: 'center',
+    // Position en bottom weggelaten om flex zijn werk te laten doen
+    // position: 'absolute',
+    // bottom: 0,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
 });
 
 class HomeScreen extends React.Component {
@@ -43,8 +55,10 @@ class HomeScreen extends React.Component {
           title="Go to Details"
           onPress={() => this.props.navigation.push('Details')}
         />
-        <TaskContainer />
-        <Navigation route={() => this.props.navigation.push('Details')} />
+        <TaskContainer />`
+        <View style={styles.navContainer}>
+          <Navigation route={() => this.props.navigation.push('Details')} />
+        </View>
       </LinearGradient>
     );
   }

@@ -6,12 +6,12 @@ const style = StyleSheet.create({
     fontSize: 28,
     fontWeight: '700',
     textAlign: 'left',
-    color: '#ffffff'
+    color: 'white'
   }
 })
 
-const Title = ({text}) => (
-  <Text style={style.title}>{ text }</Text>
+const Title = ({ text }) => (
+  <Text style={style.title}>{text}</Text>
 )
 
 export default Title
