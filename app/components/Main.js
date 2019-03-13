@@ -45,7 +45,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <LinearGradient colors={backGradient} style={styles.container}>
-        {/* Insert top text here */}
+
         <View style={styles.textContainer}>
           <Title style={styles.test} text={'Welcome, User'} />
           <SubTitle text={'How are you feeling today?'} />
@@ -55,7 +55,7 @@ class HomeScreen extends React.Component {
           title="Go to Details"
           onPress={() => this.props.navigation.push('Details')}
         />
-        <TaskContainer />`
+        <TaskContainer />
         <View style={styles.navContainer}>
           <Navigation route={() => this.props.navigation.push('Details')} />
         </View>
@@ -98,8 +98,24 @@ const RootStack = createStackNavigator(
 const AppContainer = createAppContainer(RootStack);
 
 export class Main extends Component {
+
+  // state = {
+  //   fontLoaded: false
+  // }
+  // async componentDidMount() {
+  //   await Expo.Font.loadAsync({
+  //     'font-awesome': 'https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/fontawesome-webfont.ttf',
+  //   });
+
+  //   this.setState({ fontLoaded: true });
+  // }
+
+
+
   // render() {
+  //   // if (!this.state.fontLoaded) { return null; }
   //   return (
+
   //     <LinearGradient colors={backGradient} style={styles.container}>
   //       {/* Insert top text here */}
   //       <View style={styles.textContainer}>
