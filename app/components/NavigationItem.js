@@ -30,12 +30,6 @@ const styles = StyleSheet.create({
 const NavigationItem = ({ route, icon }) => {
     return (
         < TouchableOpacity onPress={route} >
-            {/* <Icon
-                raised
-                name='heartbeat'
-                type='font-awesome'
-                color='#f50'
-                onPress={() => console.log('hello')} /> */}
         </TouchableOpacity >
     )
 
