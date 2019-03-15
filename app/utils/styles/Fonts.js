@@ -1,5 +1,5 @@
 export const Fonts = {
-    MontSerrat: 'Dosis-SemiBold.ttf'
+    MontSerrat: 'Montserrat.ttf'
 }
 
 
