@@ -4,15 +4,15 @@ import { LinearGradient } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
-import { exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
-
+import { mainTextColor, exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
+import Day from '../components/statistic/Day'
 import { backGradient } from '../utils/styles'
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
     },
     textContainer: {
         width: '100%',
@@ -21,6 +21,17 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         height: 'auto',
+
+    },
+    days_container: {
+        marginTop: 10,
+        width: '70%',
+        height: 'auto',
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        justifyContent: 'space-between',
+        color: 'white',
     },
     navContainer: {
         width: '90%',
@@ -34,13 +45,19 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     },
-    cardContainer: {
+    statisticContainer: {
         maxHeight: '40%',
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'nowrap',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+        width: '70%',
     },
+    text: {
+        color: mainTextColor,
+
+    }
 });
 
 class StatisticScreen extends Component {
@@ -49,20 +66,30 @@ class StatisticScreen extends Component {
             <LinearGradient colors={backGradient} style={styles.container}>
                 {/* Insert top text here */}
                 <View style={styles.textContainer}>
-                    <Title text={'Welcome, User'} />
-                    <SubTitle text={'This STATISTIC'} />
+                    <Title text={'This weeks overview'} />
+                    <SubTitle text={'A visual summary of your week'} />
 
                 </View>
-                <View style={styles.cardContainer}>
-                    <ScrollView horizontal={true}>
-                        <Card text={'Great'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} />
-                        <Card text={'Okay'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} />
-                        <Card text={'Neutral'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} />
-                        <Card text={'Anxious'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} />
-                        <Card text={'Exhausted'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} />
-                    </ScrollView>
+                <View style={styles.statisticContainer}>
+                    <Day averageEmotion={200}></Day>
+                    <Day averageEmotion={100}></Day>
+                    <Day averageEmotion={20}></Day>
+                    <Day averageEmotion={70}></Day>
+                    <Day averageEmotion={90}></Day>
+                    <Day averageEmotion={165}></Day>
+                    <Day averageEmotion={106}></Day>
                 </View>
-                <Navigation />
+                <View style={styles.days_container}>
+                    <Text style={styles.text}>Mon</Text>
+                    <Text style={styles.text}>Tue</Text>
+                    <Text style={styles.text}>Wed</Text>
+                    <Text style={styles.text}>Thu</Text>
+                    <Text style={styles.text}>Fri</Text>
+                    <Text style={styles.text}>Sat</Text>
+                    <Text style={styles.text}>Sun</Text>
+
+                </View>
+
             </LinearGradient>
         );
     }

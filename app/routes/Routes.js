@@ -42,10 +42,10 @@ const HomeStack = createStackNavigator({
   Details: {
     screen: TaskScreen,
   }
-},{
-  initialRouteName: 'Home',
-  headerMode: 'none',
-})
+}, {
+    initialRouteName: 'Home',
+    headerMode: 'none',
+  })
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -63,7 +63,8 @@ const TabNavigator = createBottomTabNavigator(
       activeTintColor: highLight,
       inactiveTintColor: 'white',
       style: styles.nav,
-      
+      showLabel: false,
+
     },
     initialRouteName: 'Home',
   }
