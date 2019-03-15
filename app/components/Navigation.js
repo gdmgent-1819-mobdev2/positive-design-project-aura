@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import NavigationItem from './NavigationItem'
 
-
 const styles = StyleSheet.create({
     nav: {
         width: '90%',
