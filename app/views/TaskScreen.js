@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo'
 import TaskContainer from '../components/TaskContainer'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
+import { ArrowButton } from '../components/buttonComponents/'
 
 import { backGradient } from '../utils/styles'
 
@@ -45,6 +46,8 @@ class TaskScreen extends Component {
           <SubTitle text={'How are you feeling today?'} />
 
         </View>
+        <ArrowButton text={'Arrow'}/>
+
         <Button
           title="Go to Details"
           onPress={() => this.props.navigation.push('Home')}
