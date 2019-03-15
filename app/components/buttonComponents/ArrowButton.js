@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { Image } from "react-native";
+import { StyleSheet, TouchableOpacity, Image } from "react-native";
+import { withNavigation } from 'react-navigation'
 
 const style = StyleSheet.create({
   container: {
@@ -8,15 +8,17 @@ const style = StyleSheet.create({
     alignItems: 'flex-start',
   },
   icon: {
-    width: 15,
-    height: 30
+    width: 20,
+    height: 20,
+    marginBottom: 20,
+    marginTop: 10,
   }
 });
 
-export default class ArrowButton extends React.Component {
+class ArrowButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity style={style.container}>
+      <TouchableOpacity style={style.container} onPress={() => {this.props.navigation.goBack()}}>
         <Image
           source={require("../../assets/icons/arrow-back.png")}
           fadeDuration={0}
@@ -26,3 +28,5 @@ export default class ArrowButton extends React.Component {
     );
   }
 }
+
+export default withNavigation(ArrowButton)
