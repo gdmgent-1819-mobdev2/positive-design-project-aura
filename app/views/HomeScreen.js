@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   textContainer: {
     width: '100%',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
   },
   cardContainer: {
-    maxHeight: '50%',
+    maxHeight: '70%',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'nowrap',
