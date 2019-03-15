@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Button } from 'react-native'
-import { createStackNavigator, createAppContainer } from 'react-navigation'; // Version can be specified in package.json
+import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation'; // Version can be specified in package.json
 import CardContainer from './CardContainer'
 import { Title, SubTitle } from './textComponents/'
 import { backGradient } from '../utils/styles/Colors'
 import Navigation from './Navigation'
 import NavigationItem from './NavigationItem'
-
+import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
 import TaskContainer from './TaskContainer'
+
+
+//import for screens
+
 
 const styles = StyleSheet.create({
   container: {
@@ -53,17 +57,37 @@ class HomeScreen extends React.Component {
         </View>
         <Button
           title="Go to Details"
-          onPress={() => this.props.navigation.push('Details')}
+          onPress={() => this.props.navigation.push('TaskScreen')}
         />
         <TaskContainer />
         <View style={styles.navContainer}>
-          <Navigation route={() => this.props.navigation.push('Details')} />
+          <Navigation route={() => this.props.navigation.push('TaskScreen')} />
         </View>
       </LinearGradient>
     );
   }
 }
 
+class StatisticScreen extends React.Component {
+  render() {
+    return (
+      <LinearGradient colors={backGradient} style={styles.container}>
+        {/* Insert top text here */}
+        <View style={styles.textContainer}>
+          <Title text={'Welcome, User'} />
+          <SubTitle text={'How are you feeling today?'} />
+
+        </View>
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.push('TaskScreen')}
+        />
+        <CardContainer />
+        <Navigation />
+      </LinearGradient>
+    );
+  }
+}
 class TaskScreen extends React.Component {
   render() {
     return (
@@ -76,7 +100,7 @@ class TaskScreen extends React.Component {
         </View>
         <Button
           title="Go to Details"
-          onPress={() => this.props.navigation.push('Details')}
+          onPress={() => this.props.navigation.push('TaskScreen')}
         />
         <CardContainer />
         <Navigation />
@@ -95,20 +119,57 @@ const RootStack = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(RootStack);
+
+
+const RootStack1 = createBottomTabNavigator(
+  {
+    Home: HomeScreen,
+    Profile: TaskScreen,
+    Statistic: StatisticScreen,
+
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let IconComponent = Ionicons;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = `md-home${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Profile') {
+          iconName = `ios-checkmark-circle${focused ? '' : '-outline'}`;
+        }
+        return <IconComponent name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: '#42f44b',
+      inactiveTintColor: 'gray',
+      headerMode: 'none',
+    },
+    initialRouteName: 'Home',
+  }
+);
+const AppContainer = createAppContainer(RootStack1);
 
 export class Main extends Component {
+  state = {
+    fontLoaded: false
+  }
+  async componentDidMount() {
+    await Expo.Font.loadAsync({
+      
+    });
 
-  // state = {
-  //   fontLoaded: false
-  // }
-  // async componentDidMount() {
-  //   await Expo.Font.loadAsync({
-  //     'font-awesome': 'https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/fontawesome-webfont.ttf',
-  //   });
+    this.setState({ fontLoaded: true });
+  }
+  render() {
+    return (
+      <AppContainer />
+    )
+  }
 
-  //   this.setState({ fontLoaded: true });
-  // }
+
 
 
 
@@ -135,14 +196,7 @@ export class Main extends Component {
   //   )
   // }
 
-  render() {
-    return (
-      <AppContainer />
 
-
-    )
-
-  }
 }
 
 export default Main
