@@ -56,13 +56,13 @@ class HomeScreen extends Component {
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
             <Card text={'Great'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} />
-            <Card text={'Okay'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient}/>
+            <Card text={'Okay'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} />
             <Card text={'Neutral'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} />
             <Card text={'Anxious'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} />
             <Card text={'Exhausted'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} />
           </ScrollView>
         </View>
-        <Navigation />
+
       </LinearGradient>
     );
   }
