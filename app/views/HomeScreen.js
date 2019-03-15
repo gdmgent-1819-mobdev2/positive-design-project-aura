@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
   },
   cardContainer: {
-    maxHeight: '40%',
+    maxHeight: '50%',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'nowrap',
