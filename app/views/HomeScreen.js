@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
+import { exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
 
 import { backGradient } from '../utils/styles'
 
@@ -54,9 +55,11 @@ class HomeScreen extends Component {
         </View>
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
-            <Card text={'Amazing'} route={'Details'} navigation={this.props.navigation.navigate} />
-            <Card text={'Amazing'} route={'Details'} navigation={this.props.navigation.navigate} />
-            <Card text={'Amazing'} route={'Details'} navigation={this.props.navigation.navigate} />
+            <Card text={'Great'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} />
+            <Card text={'Okay'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient}/>
+            <Card text={'Neutral'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} />
+            <Card text={'Anxious'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} />
+            <Card text={'Exhausted'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} />
           </ScrollView>
         </View>
         <Navigation />
