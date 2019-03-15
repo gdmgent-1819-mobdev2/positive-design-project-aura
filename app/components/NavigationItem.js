@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import profileImage from '../assets/icons/user.png'
 import homeImage from '../assets/icons/home.png'
-import { Icon } from 'react-native-elements'
+
 //https://www.flaticon.com/free-icon/home_263115#term=home&page=1&position=1
 
 
