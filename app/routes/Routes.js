@@ -11,7 +11,6 @@ import { getTabBarIcon } from '../components/IconWithBadge'
 
 const styles = StyleSheet.create({
   nav: {
-    width: '90%',
     maxHeight: 70,
     height: 70,
     flex: 1,
@@ -20,11 +19,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     backgroundColor: '#2B1576',
     alignItems: 'center',
-    // Position en bottom weggelaten om flex zijn werk te laten doen
-    // position: 'absolute',
-    // bottom: 0,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
     marginLeft: 'auto',
     marginRight: 'auto',
 
@@ -41,11 +35,22 @@ const styles = StyleSheet.create({
 
 })
 
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+  Details: {
+    screen: TaskScreen,
+  }
+},{
+  initialRouteName: 'Home',
+  headerMode: 'none',
+})
 
 const TabNavigator = createBottomTabNavigator(
   {
     'Profile': { screen: ProfileScreen },
-    Home: { screen: HomeScreen },
+    'Home': { screen: HomeStack },
     'Statistic': { screen: StatisticScreen },
   },
   {
@@ -53,26 +58,19 @@ const TabNavigator = createBottomTabNavigator(
       tabBarIcon: ({ focused, tintColor }) =>
         getTabBarIcon(navigation, focused, tintColor),
     }),
+    animationEnabled: 'true',
     tabBarOptions: {
       activeTintColor: highLight,
       inactiveTintColor: 'white',
       style: styles.nav,
+      
     },
     initialRouteName: 'Home',
   }
 )
-const AppNavigator = createStackNavigator({
-  Details: {
-    screen: TaskScreen,
-  },
-  Home: {
-    screen: HomeScreen
-  }
-},
-  {
-    initialRouteName: 'Details',
-    headerMode: 'none',
-  })
+
+
+
 
 export default createAppContainer(TabNavigator)
 
