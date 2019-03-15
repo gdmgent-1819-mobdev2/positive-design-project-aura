@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, TouchableNativeFeedback } from 'react-native'
+import { withNavigation } from 'react-navigation'
 
 const styles = StyleSheet.create({
   card: {
-    minWidth: '80%',
+    width: 300,
     height: '100%',
     backgroundColor: '#48efbe',
     borderRadius: 10,
@@ -18,11 +19,13 @@ const styles = StyleSheet.create({
   }
 })
 
-const Card = ({text}) => (
-  <View style={styles.card}>
+const Card = ({text, route, navigation}) => (
+  <TouchableNativeFeedback  onPress={() => {navigation(route)}}> 
+    <View style={styles.card}>
       <Text>Card emoji</Text>
       <Text>{text}</Text>
-  </View>
+    </View>
+  </TouchableNativeFeedback>
 )
 
-export default Card
+export default withNavigation(Card)
