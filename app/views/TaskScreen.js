@@ -42,11 +42,10 @@ class TaskScreen extends Component {
       <LinearGradient colors={backGradient} style={styles.container}>
         {/* Insert top text here */}
         <View style={styles.textContainer}>
+          <ArrowButton text={'Arrow'}/>
           <Title style={styles.test} text={'Welcome, User'} />
           <SubTitle text={'How are you feeling today?'} />
-
         </View>
-        <ArrowButton text={'Arrow'}/>
 
         <Button
           title="Go to Details"
