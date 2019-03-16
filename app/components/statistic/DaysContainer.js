@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
         marginRight: 'auto',
         justifyContent: 'space-around',
         alignItems: 'center',
+        minHeight: 220,
+        maxHeight: 220,
+
 
     }
 });
