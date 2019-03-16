@@ -5,7 +5,7 @@ import Card from '../components/Card'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
 import { mainTextColor, exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
-import Day from '../components/statistic/Day'
+import DaysContainer from '../components/statistic/DaysContainer'
 import { backGradient } from '../utils/styles'
 
 const styles = StyleSheet.create({
@@ -61,6 +61,18 @@ const styles = StyleSheet.create({
 });
 
 class StatisticScreen extends Component {
+
+    state = {
+        averages: {
+            mon: 35,
+            tue: 75,
+            wed: 100,
+            thu: 195,
+            fri: 165,
+            sat: 110,
+            sun: 140,
+        },
+    }
     render() {
         return (
             <LinearGradient colors={backGradient} style={styles.container}>
@@ -70,25 +82,7 @@ class StatisticScreen extends Component {
                     <SubTitle text={'A visual summary of your week'} />
 
                 </View>
-                <View style={styles.statisticContainer}>
-                    <Day averageEmotion={200}></Day>
-                    <Day averageEmotion={100}></Day>
-                    <Day averageEmotion={20}></Day>
-                    <Day averageEmotion={70}></Day>
-                    <Day averageEmotion={90}></Day>
-                    <Day averageEmotion={165}></Day>
-                    <Day averageEmotion={106}></Day>
-                </View>
-                <View style={styles.days_container}>
-                    <Text style={styles.text}>Mon</Text>
-                    <Text style={styles.text}>Tue</Text>
-                    <Text style={styles.text}>Wed</Text>
-                    <Text style={styles.text}>Thu</Text>
-                    <Text style={styles.text}>Fri</Text>
-                    <Text style={styles.text}>Sat</Text>
-                    <Text style={styles.text}>Sun</Text>
-
-                </View>
+                <DaysContainer averages={this.state.averages} />
 
             </LinearGradient>
         );

@@ -16,8 +16,12 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-        backgroundColor: 'white',
+        borderColor: 'transparent',
 
+    },
+    text: {
+        position: 'absolute',
+        bottom: -70,
     }
 
 })
@@ -26,7 +30,10 @@ const styles = StyleSheet.create({
  * 
  * @param {averageEmotion} Number from 1 to 10
  */
+
 const Day = ({ averageEmotion }) => {
+
+
     let gradientColor = [];
     if (averageEmotion < 40) {
         gradientColor = exhaustedGradient;
