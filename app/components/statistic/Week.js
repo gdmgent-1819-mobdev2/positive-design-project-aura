@@ -17,9 +17,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
         borderColor: "transparent",
-
     }
-
 })
 
 /**
