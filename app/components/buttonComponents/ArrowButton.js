@@ -6,6 +6,8 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'flex-start',
+    marginBottom: 5,
+    marginTop: 10,
   },
   icon: {
     width: 20,

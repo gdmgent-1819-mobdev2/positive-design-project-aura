@@ -6,7 +6,8 @@ const style = StyleSheet.create({
     fontSize: 28,
     fontWeight: '700',
     textAlign: 'left',
-    color: 'white'
+    color: 'white',
+    marginTop: 30
   }
 })
 
