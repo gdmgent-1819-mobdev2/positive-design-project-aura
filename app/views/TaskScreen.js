@@ -70,10 +70,10 @@ class TaskScreen extends Component {
           <SubTitle text={'Now we know how you feel, let\'s do something!'} />
         </View>
         <View style={styles.taskContainer}>
-        <TaskCard text='Excercise' gradient={okayCardGradient} />
-        <TaskCard text='Mind' gradient={stressGradient} />
-        <TaskCard text='Chat' gradient={exellentCardGradient} />
-        <TaskCard text='Quote' gradient={anxiousGradient} />
+        <TaskCard text='Excercise' gradient={okayCardGradient} image={require("../assets/icons/exercise/fysical.png")}/>
+        <TaskCard text='Mind' gradient={stressGradient} image={require("../assets/icons/exercise/mindful.png")}/>
+        <TaskCard text='Chat' gradient={exellentCardGradient} image={require("../assets/icons/exercise/remiChatbot.png")}/>
+        <TaskCard text='Quote' gradient={anxiousGradient} image={require("../assets/icons/exercise/quotes.png")}/>
         </View>
       </LinearGradient>
     );

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
-    margin: 5
+    margin: 10
   },
   icon: {
     width: 50,
@@ -36,7 +36,7 @@ const TaskCard = ({ text, gradient, image }) => (
           source={image}
           fadeDuration={0}
           style={styles.icon}
-        />
+        ></Image>
       </View>
     </LinearGradient>
   </TouchableOpacity>
