@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
 
 const TaskContainer = () => (
     <View style={styles.container}>
-        <TaskCard text='Excercise' gradient={okayCardGradient} />
-        <TaskCard text='Mind' gradient={stressGradient} />
-        <TaskCard text='Chat' gradient={exellentCardGradient} />
-        <TaskCard text='Quote' gradient={anxiousGradient} />
+        <TaskCard gradient={okayCardGradient} image={require("../assets/icons/exercise/fysical.png")}/>
+        <TaskCard gradient={stressGradient} image={require("../assets/icons/exercise/mindful.png")}/>
+        <TaskCard gradient={exellentCardGradient} image={require("../assets/icons/exercise/remiChatbot.png")}/>
+        <TaskCard gradient={anxiousGradient} image={require("../assets/icons/exercise/quotes.png")}/>
     </View>
 )
 
