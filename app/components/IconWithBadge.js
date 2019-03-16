@@ -3,6 +3,10 @@ import { createStackNavigator, createBottomTabNavigator, createAppContainer } fr
 import { Ionicons } from '@expo/vector-icons' // 6.2.2
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import Feather from '@expo/vector-icons/Feather';
+
+
+
 export class IconWithBadge extends React.Component {
     render() {
         const { name, badgeCount, color, size } = this.props;
@@ -36,7 +40,7 @@ export class IconWithBadge extends React.Component {
 
 export const getTabBarIcon = (navigation, focused, tintColor) => {
     const { routeName } = navigation.state;
-    let IconComponent = SimpleLineIcons
+    let IconComponent = Feather
     let iconName;
     if (routeName === 'Home') {
         iconName = `home`;
@@ -45,9 +49,9 @@ export const getTabBarIcon = (navigation, focused, tintColor) => {
     } else if (routeName === 'Profile') {
         iconName = `user`;
     } else if (routeName === 'Statistic') {
-        iconName = `chart`;
+        iconName = `bar-chart-2`;
     }
 
     // You can return any component that you like here!
-    return <IconComponent name={iconName} size={30} color={tintColor} />;
+    return <IconComponent name={iconName} size={35} color={tintColor} />;
 };
