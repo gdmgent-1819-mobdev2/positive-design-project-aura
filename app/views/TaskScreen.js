@@ -7,6 +7,7 @@ import Navigation from '../components/Navigation'
 import { UserInfo } from '../components/fieldComponents/'
 import { Title, SubTitle } from '../components/textComponents/'
 import { ArrowButton } from '../components/buttonComponents/'
+import { Logo } from '../components/textComponents/'
 
 import { backGradient } from '../utils/styles'
 
@@ -71,6 +72,7 @@ class TaskScreen extends Component {
           <SubTitle text={'Now we know how you feel, let\'s do something!'} />
         </View>
         <View style={styles.taskContainer}>
+          <Logo />
           <UserInfo />
           <TaskCard text='Excercise' gradient={okayCardGradient} image={require("../assets/icons/exercise/fysical.png")} />
           <TaskCard text='Mind' gradient={stressGradient} image={require("../assets/icons/exercise/mindful.png")} />
