@@ -6,7 +6,7 @@ import { highLight, mainTextColor, stressGradient, anxiousGradient, okayCardGrad
 const styles = StyleSheet.create({
     container: {
 
-        maxWidth: '80%',
+        maxWidth: '100%',
         maxHeight: 290,
         flex: 1,
         flexDirection: 'row',
@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
 
 const TaskContainer = () => (
     <View style={styles.container}>
-        <TaskCard text='Excercise' gradient={okayCardGradient} />
-        <TaskCard text='Mind' gradient={stressGradient} />
-        <TaskCard text='Chat' gradient={exellentCardGradient} />
-        <TaskCard text='Quote' gradient={anxiousGradient} />
+        <TaskCard gradient={okayCardGradient}/>
+        <TaskCard gradient={stressGradient} />
+        <TaskCard gradient={exellentCardGradient} />
+        <TaskCard gradient={anxiousGradient} />
     </View>
 )
 
