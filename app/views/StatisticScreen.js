@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView } from 'react-native'
+import { Alert, Text, View, StyleSheet, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
 import { mainTextColor, exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
 import DaysContainer from '../components/statistic/DaysContainer'
+import WeeksContainer from '../components/statistic/WeeksContainer'
 import { backGradient } from '../utils/styles'
 
 const styles = StyleSheet.create({
@@ -54,6 +55,26 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '70%',
     },
+    options: {
+        width: '100%',
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    options_text: {
+        color: mainTextColor,
+        fontSize: 20,
+        margin: 5,
+    },
+    options_text_selected: {
+        color: mainTextColor,
+        fontSize: 24,
+        margin: 5,
+
+
+    },
     text: {
         color: mainTextColor,
 
@@ -63,7 +84,7 @@ const styles = StyleSheet.create({
 class StatisticScreen extends Component {
 
     state = {
-        averages: {
+        averagesDay: {
             mon: 35,
             tue: 75,
             wed: 100,
@@ -72,20 +93,71 @@ class StatisticScreen extends Component {
             sat: 110,
             sun: 140,
         },
+        averagesWeek: {
+            week1: 160,
+            week2: 75,
+            week3: 100,
+            week4: 195,
+        },
+        weekly: true,
     }
     render() {
-        return (
-            <LinearGradient colors={backGradient} style={styles.container}>
-                {/* Insert top text here */}
-                <View style={styles.textContainer}>
-                    <Title text={'This weeks overview'} />
-                    <SubTitle text={'A visual summary of your week'} />
+        if (this.state.weekly) {
+            return (
+                <LinearGradient colors={backGradient} style={styles.container}>
+                    {/* Insert top text here */}
+                    <View style={styles.textContainer}>
+                        <Title text={"This week's overview"} />
+                        <SubTitle text={'A visual summary of your week'} />
 
-                </View>
-                <DaysContainer averages={this.state.averages} />
 
-            </LinearGradient>
-        );
+                    </View>
+
+                    <View style={styles.options}>
+                        <Text onPress={() => {
+                            this.setState({
+                                weekly: true,
+                            })
+                        }} style={styles.options_text}>Week</Text>
+                        <Text onPress={() => {
+                            this.setState({
+                                weekly: false,
+                            })
+                        }} style={styles.options_text}>Month</Text>
+                    </View>
+
+
+                    <DaysContainer averages={this.state.averagesDay} />
+
+                </LinearGradient>
+            )
+        } else {
+            return (
+                <LinearGradient colors={backGradient} style={styles.container}>
+                    {/* Insert top text here */}
+                    <View style={styles.textContainer}>
+                        <Title text={'This month overview'} />
+                        <SubTitle text={'A visual summary of your month'} />
+
+                    </View>
+                    <View style={styles.options}>
+                        <Text onPress={() => {
+                            this.setState({
+                                weekly: true,
+                            })
+                        }} style={styles.options_text}>Week</Text>
+                        <Text onPress={() => {
+                            this.setState({
+                                weekly: false,
+                            })
+                        }} style={styles.options_text}>Month</Text>
+                    </View>
+
+                    <WeeksContainer averages={this.state.averagesWeek} />
+
+                </LinearGradient>
+            )
+        }
     }
 }
 
