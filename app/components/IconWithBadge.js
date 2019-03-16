@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons' // 6.2.2
-
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 export class IconWithBadge extends React.Component {
     render() {
         const { name, badgeCount, color, size } = this.props;
@@ -35,18 +36,18 @@ export class IconWithBadge extends React.Component {
 
 export const getTabBarIcon = (navigation, focused, tintColor) => {
     const { routeName } = navigation.state;
-    let IconComponent = Ionicons;
+    let IconComponent = SimpleLineIcons
     let iconName;
     if (routeName === 'Home') {
-        iconName = `ios-home`;
+        iconName = `home`;
         // We want to add badges to home tab icon
         //IconComponent = HomeIconWithBadge;
     } else if (routeName === 'Profile') {
-        iconName = `ios-person`;
+        iconName = `user`;
     } else if (routeName === 'Statistic') {
-        iconName = `ios-stats`;
+        iconName = `chart`;
     }
 
     // You can return any component that you like here!
-    return <IconComponent name={iconName} size={35} color={tintColor} />;
+    return <IconComponent name={iconName} size={30} color={tintColor} />;
 };
