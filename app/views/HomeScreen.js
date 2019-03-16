@@ -55,11 +55,11 @@ class HomeScreen extends Component {
         </View>
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
-            <Card text={'Great'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} />
-            <Card text={'Okay'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} />
-            <Card text={'Neutral'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} />
-            <Card text={'Anxious'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} />
-            <Card text={'Exhausted'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} />
+            <Card text={'Excellent'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")}/>
+            <Card text={'Okay'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")}/>
+            <Card text={'Stressed'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} image={require("../assets/icons/card-emotes/stressed.png")}/>
+            <Card text={'Exhausted'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} image={require("../assets/icons/card-emotes/exhausted.png")}/>
+            <Card text={'Anxious'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} image={require("../assets/icons/card-emotes/anxious.png")}/>
           </ScrollView>
         </View>
 
