@@ -16,10 +16,8 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-        backgroundColor: 'white',
-
+        borderColor: "transparent",
     }
-
 })
 
 /**
@@ -42,11 +40,9 @@ const Week = ({ averageEmotion }) => {
 
     return (
         <LinearGradient style={[{ height: averageEmotion }, styles.week]} colors={gradientColor}>
-
         </LinearGradient>
-
     )
 
 }
 
-export default Day
+export default Week
