@@ -19,8 +19,8 @@ const style = StyleSheet.create({
   }
 })
 
-const DoneButton = ({text}) => (
-    <TouchableOpacity onPress={this._onPressButton} style={style.container}>
+const DoneButton = ({text, navigation}) => (
+    <TouchableOpacity onPress={() => {navigation('Home')}} style={style.container}>
       <Text style={style.text}>{ text }</Text>
     </TouchableOpacity>
 )

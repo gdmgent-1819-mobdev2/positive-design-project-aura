@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import React from "react";
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { LinearGradient } from "expo";
-import { highLight, mainTextColor, stressGradient } from "../utils/styles";
+import { withNavigation } from 'react-navigation'
 
 const styles = StyleSheet.create({
   taskcard: {
-    width: 140,
-    height: 140,
+    width: '100%',
+    height: '100%',
     //backgroundColor: '#48efbe',
     borderRadius: 20,
     alignItems: "center",
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     margin: 5
   },
   container: {
-    width: 140,
-    height: 140,
+    width: 130,
+    height: 130,
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const TaskCard = ({ text, gradient, image }) => (
-  <TouchableOpacity>
+const TaskCard = ({ gradient, image, type, navigation }) => (
+  <TouchableOpacity onPress={() => {navigation('TaskDetail', {type: type})}}>
     <LinearGradient colors={gradient} style={styles.container}>
       <View style={styles.taskcard}>
         <Image
@@ -42,4 +42,4 @@ const TaskCard = ({ text, gradient, image }) => (
   </TouchableOpacity>
 );
 
-export default TaskCard;
+export default withNavigation(TaskCard);
