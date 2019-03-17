@@ -43,8 +43,8 @@ class LoginScreen extends Component {
           />
         </View>
         <View style={styles.view}>
-          <UserInfo />
-          <UserInfo />
+          <UserInfo placeholder={'Email'}/>
+          <UserInfo placeholder={'Password'}/>
         </View>
         <View>
           <PrimaryButton text={"Login"} route={"Home"} />

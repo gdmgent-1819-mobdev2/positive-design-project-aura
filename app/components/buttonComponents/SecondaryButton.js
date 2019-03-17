@@ -11,7 +11,7 @@ const style = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     borderRadius: 22,
-    margin: 5,
+    marginTop: 10,
   },
   text: {
     fontSize: 18,
