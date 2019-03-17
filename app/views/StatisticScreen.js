@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     },
     options_text: {
         color: mainTextColor,
-        fontSize: 20,
+        fontSize: 18,
         margin: 5,
     },
     options_text_selected: {
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     },
     text: {
         color: mainTextColor,
-
     }
 });
 
@@ -114,22 +113,27 @@ class StatisticScreen extends Component {
                     </View>
 
                     <View style={styles.options}>
+
+
                         <Text onPress={() => {
                             this.setState({
                                 weekly: true,
                             })
-                        }} style={styles.options_text}>Week</Text>
+                        }} style={this.state.weekly ? styles.options_text_selected : styles.options_text}>
+
+
+                            Week</Text>
                         <Text onPress={() => {
                             this.setState({
                                 weekly: false,
                             })
-                        }} style={styles.options_text}>Month</Text>
+                        }} style={this.state.weekly ? styles.options_text : styles.options_text_selected}>Month</Text>
                     </View>
 
 
                     <DaysContainer averages={this.state.averagesDay} />
 
-                </LinearGradient>
+                </LinearGradient >
             )
         } else {
             return (
@@ -145,12 +149,12 @@ class StatisticScreen extends Component {
                             this.setState({
                                 weekly: true,
                             })
-                        }} style={styles.options_text}>Week</Text>
+                        }} style={this.state.weekly ? styles.options_text_selected : styles.options_text}>Week</Text>
                         <Text onPress={() => {
                             this.setState({
                                 weekly: false,
                             })
-                        }} style={styles.options_text}>Month</Text>
+                        }} style={this.state.weekly ? styles.options_text : styles.options_text_selected}>Month</Text>
                     </View>
 
                     <WeeksContainer averages={this.state.averagesWeek} />

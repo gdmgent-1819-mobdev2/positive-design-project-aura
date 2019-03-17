@@ -49,7 +49,8 @@ const HomeStack = createStackNavigator({
     screen: TaskDetail,
   }
 }, {
-    initialRouteName: 'Details',
+
+    initialRouteName: 'Home',
     headerMode: 'none',
   })
 
@@ -82,7 +83,9 @@ const AuthStack = createStackNavigator({ 'LogIn': LoginScreen });
 const switchNavigator = createSwitchNavigator(
   {
     LogIn: LoginScreen,
+
     Register: RegisterScreen,
+
     App: TabNavigator,
     Auth: AuthStack,
   },
@@ -95,3 +98,4 @@ const switchNavigator = createSwitchNavigator(
 
 
 export default createAppContainer(switchNavigator)
+
