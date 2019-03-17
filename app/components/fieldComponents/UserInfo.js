@@ -3,8 +3,8 @@ import { AppRegistry, TextInput, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     inputField: {
-        backgroundColor: '#D8D4E3',
-        opacity: 0.8,
+        backgroundColor: '#ffffff',
+        opacity: 0.9,
         height: 40,
         width: '100%',
         borderRadius: 20,
@@ -31,3 +31,4 @@ class UserInfo extends Component {
 }
 
 export default UserInfo
+
