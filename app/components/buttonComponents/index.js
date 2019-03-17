@@ -1,9 +1,9 @@
-import NextExerciseButton from './NextExerciseButton'
-import DoneButton from './Done'
+import PrimaryButton from './PrimaryButton'
+import SecondaryButton from './SecondaryButton'
 import ArrowButton from './ArrowButton'
 
 export {
-  NextExerciseButton,
-  DoneButton,
-  ArrowButton
+  PrimaryButton,
+  SecondaryButton,
+  ArrowButton,
 }

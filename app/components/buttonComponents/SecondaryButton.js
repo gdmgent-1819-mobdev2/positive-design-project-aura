@@ -11,6 +11,7 @@ const style = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     borderRadius: 22,
+    margin: 5,
   },
   text: {
     fontSize: 18,
@@ -19,10 +20,10 @@ const style = StyleSheet.create({
   }
 })
 
-const DoneButton = ({text, navigation}) => (
-    <TouchableOpacity onPress={() => {navigation('Home')}} style={style.container}>
+const SecondaryButton = ({text, navigation, route}) => (
+    <TouchableOpacity onPress={() => {navigation(route)}} style={style.container}>
       <Text style={style.text}>{ text }</Text>
     </TouchableOpacity>
 )
 
-export default DoneButton
+export default SecondaryButton

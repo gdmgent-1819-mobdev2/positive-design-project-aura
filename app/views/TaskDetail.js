@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo'
 import TaskCard from '../components/TaskCard'
 import { exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient } from '../utils/styles'
 import { SubTitle, Body } from '../components/textComponents/'
-import { ArrowButton, DoneButton } from '../components/buttonComponents/'
+import { ArrowButton, SecondaryButton, PrimaryButton } from '../components/buttonComponents/'
 
 import { backGradient } from '../utils/styles'
 
@@ -43,7 +43,8 @@ class TaskDetail extends Component {
           <Body text={'Task Detail Component comes here'}/>
         </View>
         <View style={styles.buttons}>
-          <DoneButton text={'Finish exercises'} navigation={navigation.navigate} />
+          <PrimaryButton text={'Next exercise'} route={'Details'} navigation={navigation.navigate} />
+          <SecondaryButton text={'Finish exercises'} route={'Home'} navigation={navigation.navigate} />
         </View>
       </LinearGradient>
     )
