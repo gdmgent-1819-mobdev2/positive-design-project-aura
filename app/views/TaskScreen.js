@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo'
 import TaskCard from '../components/TaskCard'
 import { exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
@@ -52,21 +52,6 @@ class TaskScreen extends Component {
   render() {
     return (
       <LinearGradient colors={backGradient} style={styles.container}>
-        {/* Insert top text here
-        <View style={styles.textContainer}>
-          <ArrowButton text={'Arrow'}/>
-          <Title style={styles.test} text={'Welcome, User'} />
-          <SubTitle text={'How are you feeling today?'} />
-        </View>
-
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.push('Home')}
-        />
-        <TaskContainer />
-        <View style={styles.navContainer}>
-          <Navigation route={() => this.props.navigation.push('Home')} />
-        </View> */}
         <View style={styles.textContainer}>
           <ArrowButton />
           <SubTitle text={'Now we know how you feel, let\'s do something!'} />
@@ -74,10 +59,10 @@ class TaskScreen extends Component {
         <View style={styles.taskContainer}>
           <Logo />
           <UserInfo />
-          <TaskCard text='Excercise' gradient={okayCardGradient} image={require("../assets/icons/exercise/fysical.png")} />
-          <TaskCard text='Mind' gradient={stressGradient} image={require("../assets/icons/exercise/mindful.png")} />
-          <TaskCard text='Chat' gradient={exellentCardGradient} image={require("../assets/icons/exercise/remiChatbot.png")} />
-          <TaskCard text='Quote' gradient={anxiousGradient} image={require("../assets/icons/exercise/quotes.png")} />
+          <TaskCard text='Excercise' gradient={okayCardGradient} image={require("../assets/icons/exercise/fysical.png")} navigation={this.props.navigation.navigate} type={'physical'} />
+          <TaskCard text='Mind' gradient={stressGradient} image={require("../assets/icons/exercise/mindful.png")} navigation={this.props.navigation.navigate} type={'mindfulness'} />
+          <TaskCard text='Chat' gradient={exellentCardGradient} image={require("../assets/icons/exercise/remiChatbot.png")} navigation={this.props.navigation.navigate} type={'chatbot'} />
+          <TaskCard text='Quote' gradient={anxiousGradient} image={require("../assets/icons/exercise/quotes.png")} navigation={this.props.navigation.navigate} type={'quote'} />
         </View>
       </LinearGradient>
     );

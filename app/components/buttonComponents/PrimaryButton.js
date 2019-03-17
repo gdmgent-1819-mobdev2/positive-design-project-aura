@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 
 const style = StyleSheet.create({
   container: {
@@ -10,6 +10,7 @@ const style = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 12,
     borderRadius: 22,
+    margin: 5,
   },
   text: {
     fontSize: 18,
@@ -19,10 +20,12 @@ const style = StyleSheet.create({
 }
 })
 
-const NextExerciseButton = ({text}) => (
+const PrimaryButton = ({text, navigation, route}) => (
+  <TouchableOpacity onPress={() => {navigation(route)}}>
     <View style={style.container}>
         <Text style={style.text}>{ text }</Text>
     </View>
+  </TouchableOpacity>
 )
 
-export default NextExerciseButton
+export default PrimaryButton
