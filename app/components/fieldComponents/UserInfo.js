@@ -23,8 +23,7 @@ class UserInfo extends Component {
     return (
       <TextInput
         style={styles.inputField}
-        onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
+        placeholder=''
       />
     );
   }

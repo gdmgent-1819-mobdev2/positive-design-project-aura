@@ -39,11 +39,11 @@ class RegisterScreen extends Component {
             style={styles.center}
           />
         </View>
-        <UserInfo />
-        <UserInfo />
-        <UserInfo />
-        <UserInfo />
-        <UserInfo />
+        <UserInfo placeholder="First name"/>
+        <UserInfo placeholder="Last name"/>
+        <UserInfo placeholder="Age"/>
+        <UserInfo placeholder="Email"/>
+        <UserInfo placeholder="Password"/>
         <View style={"addTopMargin"}>
           <PrimaryButton text={"Register"} route={"Home"} />
         </View>

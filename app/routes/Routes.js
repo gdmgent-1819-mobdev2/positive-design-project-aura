@@ -5,6 +5,7 @@ import HomeScreen from '../views/HomeScreen'
 import ProfileScreen from '../views/ProfileScreen'
 import StatisticScreen from '../views/StatisticScreen'
 import LoginScreen from '../views/LoginScreen'
+import RegisterScreen from '../views/RegisterScreen'
 import TaskDetail from '../views/TaskDetail'
 import { Ionicons } from '@expo/vector-icons' // 6.2.2
 import { Text, View, StyleSheet } from 'react-native';
@@ -48,7 +49,7 @@ const HomeStack = createStackNavigator({
     screen: TaskDetail,
   }
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Details',
     headerMode: 'none',
   })
 
@@ -80,7 +81,7 @@ const AuthStack = createStackNavigator({ 'LogIn': LoginScreen });
 
 const switchNavigator = createSwitchNavigator(
   {
-    LogIn: LoginScreen,
+    LogIn: RegisterScreen,
     App: TabNavigator,
     Auth: AuthStack,
   },
