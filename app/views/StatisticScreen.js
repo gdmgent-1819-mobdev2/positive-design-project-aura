@@ -114,11 +114,16 @@ class StatisticScreen extends Component {
                     </View>
 
                     <View style={styles.options}>
+
+                    
                         <Text onPress={() => {
                             this.setState({
                                 weekly: true,
                             })
-                        }} style={styles.options_text}>Week</Text>
+                        }} style={styles.options_text}>
+                        
+                        
+                        Week</Text>
                         <Text onPress={() => {
                             this.setState({
                                 weekly: false,
