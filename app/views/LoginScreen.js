@@ -33,6 +33,10 @@ const styles = StyleSheet.create({
 
 class LoginScreen extends Component {
     render() {
+        _signInAsync = async () => {
+            await AsyncStorage.setItem('userToken', 'abc');
+            this.props.navigation.navigate('App');
+        };
         return (
             <View style={styles.container}>
                 <View style={styles.view}>
@@ -47,7 +51,7 @@ class LoginScreen extends Component {
                     <UserInfo />
                 </View>
                 <View>
-                    <PrimaryButton text={"Login"} route={"Home"} />
+                    <PrimaryButton text={"Login"} route={"App"} navigation={this.props.navigation.navigate} />
                     <SecondaryButton text={"Register"} route={"Register"} />
                 </View>
             </View>
