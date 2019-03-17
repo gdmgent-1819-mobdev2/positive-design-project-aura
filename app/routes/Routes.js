@@ -46,9 +46,12 @@ const HomeStack = createStackNavigator({
   },
   TaskDetail: {
     screen: TaskDetail,
+  },
+  Login: {
+    screen: LoginScreen
   }
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
     headerMode: 'none',
   })
 
