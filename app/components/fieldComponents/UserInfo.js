@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
-import { AppRegistry, TextInput, StyleSheet } from 'react-native';
+import { AppRegistry, TextInput, StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
     inputField: {
-        backgroundColor: '#D8D4E3',
-        opacity: 0.8,
+        backgroundColor: '#ffffff',
+        opacity: 0.9,
         height: 40,
         width: '100%',
         borderRadius: 20,
         paddingLeft: 10,
         marginTop: 10
+    }, view: {
+      width: '100%'
     }
   })
 
-class UserInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: 'Typ info here' };
-  }
 
-  render() {
-    return (
-      <TextInput
+const UserInfo = ({ placeholder}) => (
+  <View style={styles.view}>
+  <TextInput
         style={styles.inputField}
-        onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
+        placeholder={placeholder}
       />
-    );
-  }
-}
+  </View>
+);
 
 export default UserInfo
+
+

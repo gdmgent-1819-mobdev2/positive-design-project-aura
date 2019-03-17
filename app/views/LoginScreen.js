@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
 });
 
 class LoginScreen extends Component {
+
     render() {
         _signInAsync = async () => {
             await AsyncStorage.setItem('userToken', 'abc');
@@ -47,8 +48,8 @@ class LoginScreen extends Component {
                     />
                 </View>
                 <View style={styles.view}>
-                    <UserInfo />
-                    <UserInfo />
+                    <UserInfo placeholder={'Email'}/>
+          <UserInfo placeholder={'Password'}/>
                 </View>
                 <View>
                     <PrimaryButton text={"Login"} route={"App"} navigation={this.props.navigation.navigate} />
@@ -57,6 +58,7 @@ class LoginScreen extends Component {
             </View>
         );
     }
+
 }
 
 export default LoginScreen;
