@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation'
+import { createSwitchNavigator, createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import TaskScreen from '../views/TaskScreen'
 import HomeScreen from '../views/HomeScreen'
 import ProfileScreen from '../views/ProfileScreen'
@@ -76,7 +76,21 @@ const TabNavigator = createBottomTabNavigator(
 )
 
 
+const AuthStack = createStackNavigator({ 'LogIn': LoginScreen });
+
+const switchNavigator = createSwitchNavigator(
+  {
+    LogIn: LoginScreen,
+    App: TabNavigator,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'LogIn',
+  }
+
+)
 
 
-export default createAppContainer(TabNavigator)
+
+export default createAppContainer(switchNavigator)
 

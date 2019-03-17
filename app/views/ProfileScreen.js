@@ -54,7 +54,6 @@ class ProfileScreen extends Component {
 
                 </View>
                 <View style={styles.cardContainer}>
-
                 </View>
                 
             </LinearGradient>
