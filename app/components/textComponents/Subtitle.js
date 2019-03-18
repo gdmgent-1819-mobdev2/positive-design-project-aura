@@ -7,6 +7,7 @@ const style = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'left',
     color: '#ffffff',
+    fontFamily: 'Montserrat-Regular',
   }
 })
 

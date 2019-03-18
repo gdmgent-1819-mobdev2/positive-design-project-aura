@@ -7,7 +7,8 @@ const style = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'left',
     color: 'white',
-    marginTop: 30
+    marginTop: 30,
+    fontFamily: 'Montserrat-SemiBold',
   }
 })
 

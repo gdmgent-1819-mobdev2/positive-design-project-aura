@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 30,
-    marginLeft: 10
+    marginLeft: 10,
+    fontFamily: 'Montserrat-SemiBold',
   },
   image: {
     width: 80,
@@ -46,11 +47,11 @@ const styles = StyleSheet.create({
   }
 })
 
-const Card = ({text, route, navigation, colorBase, image}) => (
-  <TouchableOpacity style={styles.cardStyle} onPress={() => {navigation(route)}}> 
+const Card = ({ text, route, navigation, colorBase, image }) => (
+  <TouchableOpacity style={styles.cardStyle} onPress={() => { navigation(route) }}>
     <LinearGradient style={styles.card} colors={colorBase}>
       <View style={styles.view}>
-        <Image style={styles.image} source={image}/>
+        <Image style={styles.image} source={image} />
         <Text style={styles.text}>{text}</Text>
       </View>
     </LinearGradient>
