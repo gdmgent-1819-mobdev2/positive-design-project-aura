@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import {
-    SecondaryButton,
-    PrimaryButton
-} from "../components/buttonComponents/";
-import { SecondarySubtitle } from "../components/textComponents/";
-import { Logo } from "../components/textComponents/";
-import { UserInfo } from "../components/fieldComponents/";
+import { StyleSheet, View, TouchableOpacity, Text, TextInput, AsyncStorage, Alert } from "react-native"
+import { SecondaryButton } from "../components/buttonComponents/"
+import { SecondarySubtitle } from "../components/textComponents/"
+import { Logo } from "../components/textComponents/"
 import { getInstance } from '../services/firebase/firebase'
-import console = require("console");
 
 const firebase = getInstance()
 
@@ -32,6 +27,31 @@ const styles = StyleSheet.create({
     },
     center: {
         textAlign: "center"
+    },
+    loginBtn: {
+      fontSize: 24,
+      fontWeight: '400',
+      backgroundColor: '#F50097',
+      minWidth: 180,
+      paddingTop: 12,
+      paddingBottom: 12,
+      borderRadius: 22,
+      marginTop: 20,
+    },
+    btnText: {
+      fontSize: 18,
+      fontWeight: '400',
+      color: '#ffffff',
+      textAlign: 'center',  
+    },
+    inputField: {
+      backgroundColor: '#ffffff',
+      opacity: 0.9,
+      height: 40,
+      width: '100%',
+      borderRadius: 20,
+      paddingLeft: 10,
+      marginTop: 10
     }
 });
 
@@ -42,33 +62,27 @@ class LoginScreen extends Component {
 			this.state = {
 				loggedIn: false,
 				user: null,
-				fields: {
-					email: '',
-					password: '',
-				}
+        emailField: '',
+        passField: '',
 			}
 		}
 
-		loginUser = () => {
-			console.log('sign in bruh')
-			const user = {
-				email: this.state.email,
-				pass: this.state.pass,
-			}
-			firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-				.then(() => {
-					this.props.navigation.navigate('App')
-				})
-				.catch(() => {
-
-				})
-		}
+		loginUser = async () => {
+      await AsyncStorage.setItem('isLoggedIn', 'true')
+      const user = {
+        email: this.state.emailField,
+        pass: this.state.passField,
+      }
+      firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
+        .then(() => {
+          this.props.navigation.navigate('App')
+        })
+        .catch(error => {
+          Alert.alert(error.code + ': ' + error.message)
+        })
+    }
 
     render() {
-        _signInAsync = async () => {
-            await AsyncStorage.setItem('userToken', 'abc');
-            this.props.navigation.navigate('App');
-        };
         return (
             <View style={styles.container}>
                 <View style={styles.view}>
@@ -79,12 +93,25 @@ class LoginScreen extends Component {
                     />
                 </View>
                 <View style={styles.view}>
-                    <UserInfo placeholder={'Email'} onChangeText={(text) => this.setState({fields: {email: text}})} />
-                    <UserInfo placeholder={'Password'} onChangeText={(text) => this.setState({fields: {password: text}})} />
+                    <TextInput 
+                      style={styles.inputField} 
+                      onChangeText={(text) => {this.setState({emailField: text})}}
+                      placeholder={'E-mail'}
+                      autocomplete={'email'}
+                      keyboardType={'email-address'}
+                    />
+                    <TextInput 
+                      style={styles.inputField}
+                      onChangeText={(text) => {this.setState({passField: text})}}
+                      placeholder={'Password'}
+                      autocomplete={'password'}
+                      secureTextEntry={true}
+                    />
                 </View>
                 <View>
-                    {/* <PrimaryButton text={"Login"} route={"App"} navigation={this.props.navigation.navigate} onPress={this.loginUser()} /> */}
-                    <PrimaryButton text={"Login"} funct={loginUser()} />
+                    <TouchableOpacity style={styles.loginBtn} onPress={() => {this.loginUser()}} >
+                      <Text style={styles.btnText}>Login</Text>
+                    </TouchableOpacity>
                     <SecondaryButton text={"Register"} route={"Register"} navigation={this.props.navigation.navigate} />
                 </View>
             </View>

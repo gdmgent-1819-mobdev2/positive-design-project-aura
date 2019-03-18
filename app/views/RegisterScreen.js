@@ -47,7 +47,7 @@ class RegisterScreen extends Component {
         <UserInfo placeholder="Password"/>
         <View style={"addTopMargin"}>
           <PrimaryButton text={"Register"}  />
-					<SecondaryButton text={"Login"} route={'App'} navigation={this.props.navigation.navigate} />
+					<SecondaryButton text={"Login"} route={'Login'} navigation={this.props.navigation.navigate} />
         </View>
       </View>
     );

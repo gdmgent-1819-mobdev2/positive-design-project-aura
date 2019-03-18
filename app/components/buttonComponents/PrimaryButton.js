@@ -17,13 +17,13 @@ const style = StyleSheet.create({
     fontWeight: '400',
     color: '#ffffff',
     textAlign: 'center',  
-}
+  }
 })
 
 
 
-const PrimaryButton = ({text, funct}) => (
-<TouchableOpacity onPress={funct}>
+const PrimaryButton = ({text, navigation, route}) => (
+<TouchableOpacity onPress={() => {navigation(route)}}>
     <View style={style.container}>
         <Text style={style.text}>{ text }</Text>
     </View>
