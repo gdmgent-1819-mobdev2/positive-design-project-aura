@@ -5,6 +5,7 @@ import Card from '../components/Card'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
 import { exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
+import { Logo } from "../components/textComponents/";
 
 import { backGradient } from '../utils/styles'
 
@@ -47,15 +48,13 @@ class ProfileScreen extends Component {
     render() {
         return (
             <LinearGradient colors={backGradient} style={styles.container}>
-                {/* Insert top text here */}
-                <View style={styles.textContainer}>
-                    <Title text={'Welcome, User'} />
-                    <SubTitle text={'This is PROFILE'} />
+                <Logo />
+                <View>
+
+                    <Title text={"Profile"} />
+                    <SubTitle text={'A visual k'} />
 
                 </View>
-                <View style={styles.cardContainer}>
-                </View>
-                
             </LinearGradient>
         );
     }
