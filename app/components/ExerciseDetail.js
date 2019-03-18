@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-import { Body } from './textComponents/'
+import { View, StyleSheet, ScrollView } from 'react-native'
+import { Body, SecondarySubtitle } from './textComponents/'
 import { getInstance } from '../services/firebase/firebase'
 
 const firebase = getInstance()
+
+const styles = StyleSheet.create({
+  container: {
+    maxHeight: '35%',
+    overflow: 'scroll'
+  }
+});
 
 // Gets the object with exercises of desired type, picks a random one to display
 const getRandomFromObject = (object) => {
@@ -63,10 +70,10 @@ export class ExerciseDetail extends Component {
         )
       } else {
         return (
-          <View>
-            <Body text={this.state.exercise.title} />
+          <ScrollView style={styles.container}>
+            <SecondarySubtitle text={this.state.exercise.title} />
             <Body text={this.state.exercise.steps} />
-          </View>
+          </ScrollView>
         )
       }
     } else if(this.state.loading && this.state.error) {
