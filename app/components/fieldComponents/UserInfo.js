@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 const UserInfo = ({ placeholder }) => (
     <TextInput
       style={styles.inputField}
+      onc
       placeholder={placeholder}
     />
 );

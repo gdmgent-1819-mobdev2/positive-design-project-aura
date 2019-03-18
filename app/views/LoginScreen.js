@@ -97,7 +97,6 @@ class LoginScreen extends Component {
                       style={styles.inputField} 
                       onChangeText={(text) => {this.setState({emailField: text})}}
                       placeholder={'E-mail'}
-                      autocomplete={'email'}
                       keyboardType={'email-address'}
                     />
                     <TextInput 
