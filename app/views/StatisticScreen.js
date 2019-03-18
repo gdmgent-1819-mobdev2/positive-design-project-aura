@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
-import { mainTextColor, exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
+import { mainTextColor, highLight, exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
 import DaysContainer from '../components/statistic/DaysContainer'
 import WeeksContainer from '../components/statistic/WeeksContainer'
 import { backGradient } from '../utils/styles'
@@ -69,11 +69,9 @@ const styles = StyleSheet.create({
         margin: 5,
     },
     options_text_selected: {
-        color: mainTextColor,
+        color: highLight,
         fontSize: 24,
         margin: 5,
-
-
     },
     text: {
         color: mainTextColor,

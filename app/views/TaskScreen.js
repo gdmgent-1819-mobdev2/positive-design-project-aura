@@ -57,8 +57,7 @@ class TaskScreen extends Component {
           <SubTitle text={'Now we know how you feel, let\'s do something!'} />
         </View>
         <View style={styles.taskContainer}>
-          <Logo />
-          <UserInfo />
+
           <TaskCard text='Excercise' gradient={okayCardGradient} image={require("../assets/icons/exercise/fysical.png")} navigation={this.props.navigation.navigate} type={'physical'} />
           <TaskCard text='Mind' gradient={stressGradient} image={require("../assets/icons/exercise/mindful.png")} navigation={this.props.navigation.navigate} type={'mindfulness'} />
           <TaskCard text='Chat' gradient={exellentCardGradient} image={require("../assets/icons/exercise/remiChatbot.png")} navigation={this.props.navigation.navigate} type={'chatbot'} />

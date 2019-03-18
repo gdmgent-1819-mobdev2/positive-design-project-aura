@@ -83,9 +83,7 @@ const AuthStack = createStackNavigator({ 'LogIn': LoginScreen });
 const switchNavigator = createSwitchNavigator(
   {
     LogIn: LoginScreen,
-
     Register: RegisterScreen,
-
     App: TabNavigator,
     Auth: AuthStack,
   },
