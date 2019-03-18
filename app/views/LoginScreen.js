@@ -48,12 +48,12 @@ class LoginScreen extends Component {
                     />
                 </View>
                 <View style={styles.view}>
-                    <UserInfo placeholder={'Email'}/>
-          <UserInfo placeholder={'Password'}/>
+                    <UserInfo placeholder={'Email'} />
+                    <UserInfo placeholder={'Password'} />
                 </View>
                 <View>
                     <PrimaryButton text={"Login"} route={"App"} navigation={this.props.navigation.navigate} />
-                    <SecondaryButton text={"Register"} route={"Register"} />
+                    <SecondaryButton text={"Register"} route={"Register"} navigation={this.props.navigation.navigate} />
                 </View>
             </View>
         );
