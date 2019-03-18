@@ -7,6 +7,10 @@ import {
 import { SecondarySubtitle } from "../components/textComponents/";
 import { Logo } from "../components/textComponents/";
 import { UserInfo } from "../components/fieldComponents/";
+import { getInstance } from '../services/firebase/firebase'
+import console = require("console");
+
+const firebase = getInstance()
 
 const styles = StyleSheet.create({
     container: {
@@ -33,6 +37,33 @@ const styles = StyleSheet.create({
 
 class LoginScreen extends Component {
 
+		constructor(props) {
+			super(props)
+			this.state = {
+				loggedIn: false,
+				user: null,
+				fields: {
+					email: '',
+					password: '',
+				}
+			}
+		}
+
+		loginUser = () => {
+			console.log('sign in bruh')
+			const user = {
+				email: this.state.email,
+				pass: this.state.pass,
+			}
+			firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+				.then(() => {
+					this.props.navigation.navigate('App')
+				})
+				.catch(() => {
+
+				})
+		}
+
     render() {
         _signInAsync = async () => {
             await AsyncStorage.setItem('userToken', 'abc');
@@ -48,11 +79,12 @@ class LoginScreen extends Component {
                     />
                 </View>
                 <View style={styles.view}>
-                    <UserInfo placeholder={'Email'} />
-                    <UserInfo placeholder={'Password'} />
+                    <UserInfo placeholder={'Email'} onChangeText={(text) => this.setState({fields: {email: text}})} />
+                    <UserInfo placeholder={'Password'} onChangeText={(text) => this.setState({fields: {password: text}})} />
                 </View>
                 <View>
-                    <PrimaryButton text={"Login"} route={"App"} navigation={this.props.navigation.navigate} />
+                    {/* <PrimaryButton text={"Login"} route={"App"} navigation={this.props.navigation.navigate} onPress={this.loginUser()} /> */}
+                    <PrimaryButton text={"Login"} funct={loginUser()} />
                     <SecondaryButton text={"Register"} route={"Register"} navigation={this.props.navigation.navigate} />
                 </View>
             </View>

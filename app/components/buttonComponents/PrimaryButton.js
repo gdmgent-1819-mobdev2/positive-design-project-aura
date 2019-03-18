@@ -20,8 +20,10 @@ const style = StyleSheet.create({
 }
 })
 
-const PrimaryButton = ({text, navigation, route}) => (
-  <TouchableOpacity onPress={() => {navigation(route)}}>
+
+
+const PrimaryButton = ({text, funct}) => (
+<TouchableOpacity onPress={funct}>
     <View style={style.container}>
         <Text style={style.text}>{ text }</Text>
     </View>
