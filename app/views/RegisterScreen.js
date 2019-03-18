@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 });
 
 class RegisterScreen extends Component {
+
   render() {
     return (
       <View style={styles.container}>
@@ -45,7 +46,8 @@ class RegisterScreen extends Component {
         <UserInfo placeholder="Email"/>
         <UserInfo placeholder="Password"/>
         <View style={"addTopMargin"}>
-          <PrimaryButton text={"Register"} route={"Home"} />
+          <PrimaryButton text={"Register"}  />
+					<SecondaryButton text={"Login"} route={'Login'} navigation={this.props.navigation.navigate} />
         </View>
       </View>
     );
