@@ -162,7 +162,7 @@ class StatisticScreen extends Component {
                     </View>
 
                     <WeeksContainer averages={this.state.averagesWeek} />
-
+                    <SubTitle text={'April'} />
                 </LinearGradient>
             )
         }
