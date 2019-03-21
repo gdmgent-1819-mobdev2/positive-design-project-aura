@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons' // 6.2.2
 import { Text, View, StyleSheet } from 'react-native';
 import { highLight } from '../utils/styles/'
 import { getTabBarIcon } from '../components/IconWithBadge'
+import { RegisterBase, RegisterPerson } from '../views/Register/'
 
 const styles = StyleSheet.create({
   nav: {
@@ -76,13 +77,25 @@ const TabNavigator = createBottomTabNavigator(
   }
 )
 
+const RegisterStack = createStackNavigator({
+  'Base': {
+    screen: RegisterBase,
+  },
+  'Person': {
+    screen: RegisterPerson,
+  }
+}, {
+  initialRouteName: 'Base',
+  headerMode: 'none',
+})
+
 
 const AuthStack = createStackNavigator({ 'LogIn': LoginScreen });
 
 const switchNavigator = createSwitchNavigator(
   {
     Login: LoginScreen,
-    Register: RegisterScreen,
+    Register: RegisterStack,
     App: TabNavigator,
     Auth: AuthStack,
   },

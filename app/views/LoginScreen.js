@@ -85,37 +85,34 @@ class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.view}>
-          <Logo />
-          <SecondarySubtitle
-            text={"It is not the mountain we conquer but ourselves."}
-            style={styles.center}
-          />
-        </View>
-        <View style={styles.view}>
-          <TextInput
-            style={styles.inputField}
-            onChangeText={(text) => { this.setState({ emailField: text }) }}
-            placeholder={'E-mail'}
-            autocomplete={'email'}
-            keyboardType={'email-address'}
-
-          />
-          <TextInput
-            style={styles.inputField}
-            onChangeText={(text) => { this.setState({ passField: text }) }}
-            placeholder={'Password'}
-            autocomplete={'password'}
-            secureTextEntry={true}
-
-          />
-        </View>
-        <View>
-          <TouchableOpacity style={styles.loginBtn} onPress={() => { this.loginUser() }} >
-            <Text style={styles.btnText}>Login</Text>
-          </TouchableOpacity>
-          <SecondaryButton text={"Register"} route={"Register"} navigation={this.props.navigation.navigate} />
-        </View>
+          <View style={styles.view}>
+              <Logo />
+              <SecondarySubtitle
+                  text={"It is not the mountain we conquer but ourselves."}
+                  style={styles.center}
+              />
+          </View>
+          <View style={styles.view}>
+              <TextInput 
+                style={styles.inputField} 
+                onChangeText={(text) => {this.setState({emailField: text})}}
+                placeholder={'E-mail'}
+                keyboardType={'email-address'}
+              />
+              <TextInput 
+                style={styles.inputField}
+                onChangeText={(text) => {this.setState({passField: text})}}
+                placeholder={'Password'}
+                autocomplete={'password'}
+                secureTextEntry={true}
+              />
+          </View>
+          <View>
+              <TouchableOpacity style={styles.loginBtn} onPress={() => {this.loginUser()}} >
+                <Text style={styles.btnText}>Login</Text>
+              </TouchableOpacity>
+              <SecondaryButton text={"Register"} route={"Register"} navigation={this.props.navigation.navigate} />
+          </View>
       </View>
     );
   }
