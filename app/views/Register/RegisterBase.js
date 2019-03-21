@@ -71,51 +71,6 @@ export class RegisterBase extends Component {
     }
 
     if(userdata.password === userdata.pass2) {
-      // if(firebase) {
-      //   console.log('firebase checked')
-      //   firebase.auth().createUserWithEmailAndPassword(userdata.email, userdata.password)
-      //     .then((user) => {
-      //       const uid = user.user.uid
-      //       console.log(uid, userdata.email)
-      //       const db = firebase.database()
-      //       db.ref(`/users/${uid}`).set({
-      //         uid: uid,
-      //         firstName: null,
-      //         lastName: null,
-      //         email: userdata.email,
-      //         lastSessionInHour: null,
-      //         sendEmoteAvailable: true,
-      //         firstEmoteDate: null,
-      //         notification: 'on',
-      //         darkMode: 'on',
-      //         stats: {
-      //           amountToday: 0,
-      //           dailyAverage: {
-      //             mon: 0,
-      //             tue: 0,
-      //             wed: 0,
-      //             thu: 0,
-      //             fri: 0,
-      //             sat: 0,
-      //             sun: 0,
-      //           },
-      //           weeklyAverage: {
-      //             week1: 0,
-      //             week2: 0,
-      //             week3: 0,
-      //             week4: 0,
-      //           }
-      //         }
-      //       })
-      //       .then(() => {
-      //         this.props.navigation.navigate('RegisterPerson', {uid: uid})
-      //       })
-      //       .catch(error => Alert.alert(error))
-      //     })
-      //     .catch(error => Alert.alert(error))
-      // } else {
-      //   Alert.alert('We are having some trouble connecting, please try again later.')
-      // }
       this.props.navigation.navigate('Person', { data: userdata})
     }
     else {
