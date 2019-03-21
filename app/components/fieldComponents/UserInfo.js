@@ -17,12 +17,10 @@ const styles = StyleSheet.create({
 
 
 const UserInfo = ({ placeholder }) => (
-  <View style={styles.view}>
     <TextInput
       style={styles.inputField}
       placeholder={placeholder}
     />
-  </View>
 );
 
 export default UserInfo

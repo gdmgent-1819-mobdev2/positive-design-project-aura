@@ -64,8 +64,8 @@ export class ExerciseDetail extends Component {
       if(this.state.type === 'quote' || this.state.type === 'chatbot') {
         return (
           <View>
-            <Body text={this.state.exercise.quote_text} />
-            <Body text={this.state.exercise.author} />
+            <Body text={this.state.exercise.text} />
+            <Body text={this.state.exercise.from} />
           </View>
         )
       } else {
