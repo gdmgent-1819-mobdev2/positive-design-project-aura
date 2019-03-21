@@ -9,6 +9,18 @@ import DaysContainer from '../components/statistic/DaysContainer'
 import WeeksContainer from '../components/statistic/WeeksContainer'
 import { backGradient } from '../utils/styles'
 
+
+/*TODO: 
+-Get day and weekly average from firebase, if not given = 1
+
+
+**DATA STRUCTURE
+-Click on Emote
+    ->get today's date
+        ->get today's average value
+        ->if empty, insert today's day
+
+*/
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -100,26 +112,21 @@ class StatisticScreen extends Component {
     }
     render() {
         if (this.state.weekly) {
+            //get value from firebase, setState
             return (
                 <LinearGradient colors={backGradient} style={styles.container}>
                     {/* Insert top text here */}
                     <View style={styles.textContainer}>
                         <Title text={"This week's overview"} />
                         <SubTitle text={'A visual summary of your week'} />
-
-
                     </View>
 
                     <View style={styles.options}>
-
-
                         <Text onPress={() => {
                             this.setState({
                                 weekly: true,
                             })
                         }} style={this.state.weekly ? styles.options_text_selected : styles.options_text}>
-
-
                             Week</Text>
                         <Text onPress={() => {
                             this.setState({
@@ -140,7 +147,6 @@ class StatisticScreen extends Component {
                     <View style={styles.textContainer}>
                         <Title text={'This month overview'} />
                         <SubTitle text={'A visual summary of your month'} />
-
                     </View>
                     <View style={styles.options}>
                         <Text onPress={() => {

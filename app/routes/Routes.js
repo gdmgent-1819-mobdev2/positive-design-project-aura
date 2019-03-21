@@ -71,7 +71,6 @@ const TabNavigator = createBottomTabNavigator(
       inactiveTintColor: 'white',
       style: styles.nav,
       showLabel: false,
-
     },
     initialRouteName: 'Home',
   }
