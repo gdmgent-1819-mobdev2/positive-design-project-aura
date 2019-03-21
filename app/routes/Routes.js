@@ -72,7 +72,6 @@ const TabNavigator = createBottomTabNavigator(
       inactiveTintColor: 'white',
       style: styles.nav,
       showLabel: false,
-
     },
     initialRouteName: 'Home',
   }
@@ -101,12 +100,10 @@ const switchNavigator = createSwitchNavigator(
     Auth: AuthStack,
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'App',
   }
 
 )
-
-
 
 export default createAppContainer(switchNavigator)
 
