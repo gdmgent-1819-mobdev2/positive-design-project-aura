@@ -95,7 +95,7 @@ class StatisticScreen extends Component {
     state = {
         averagesDay: {
             mon: 35,
-            tue: 75,
+            tue: 0,
             wed: 100,
             thu: 195,
             fri: 165,
@@ -105,7 +105,7 @@ class StatisticScreen extends Component {
         averagesWeek: {
             week1: 160,
             week2: 75,
-            week3: 100,
+            week3: 0,
             week4: 195,
         },
         weekly: true,
@@ -162,7 +162,7 @@ class StatisticScreen extends Component {
                     </View>
 
                     <WeeksContainer averages={this.state.averagesWeek} />
-
+                    <SubTitle text={'April'} />
                 </LinearGradient>
             )
         }

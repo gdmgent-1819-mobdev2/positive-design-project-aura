@@ -24,3 +24,4 @@ export const anxiousBarGradient = ['#FF7600', '#FF0000']
 //text colors and highlights
 export const mainTextColor = '#FFFFFF'
 export const highLight = '#F50097'
+export const grey = '#D0CFD2'
