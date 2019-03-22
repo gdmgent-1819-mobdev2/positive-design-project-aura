@@ -80,12 +80,12 @@ const addEmotion = async(rating, navigation, route) => {
       if(stats.lastAddDay === addDay) {
         const dailyTaps = stats.amountToday += 1
         const total = stats.totalToday += rating
-        const average = total / dailyTaps
+        const average = ((total / dailyTaps) * 2)
         const dayAverages = {
           ...stats.dailyAverage,
           [weekDays[addDay]]: average,
         }
-        const weekAverage = Object.values(dayAverages).reduce((a,b) => a + b)
+        const weekAverage = ((Object.values(dayAverages).reduce((a,b) => a + b) / 7) * 2)
         await db.ref(`/users/${uid}/stats`).update({
           amountToday: dailyTaps,
           dailyAverage: {
@@ -103,12 +103,12 @@ const addEmotion = async(rating, navigation, route) => {
       } else {
         const dailyTaps = 1
         const total = rating
-        const average = total / dailyTaps
+        const average = ((total / dailyTaps) * 2)
         const dayAverages = {
           ...stats.dailyAverage,
           [weekDays[addDay]]: average,
         }
-        const weekAverage = Object.values(dayAverages).reduce((a,b) => a + b)
+        const weekAverage = ((Object.values(dayAverages).reduce((a,b) => a + b) / 7) * 2)
         await db.ref(`/users/${uid}/stats`).update({
           amountToday: dailyTaps,
           dailyAverage: {
