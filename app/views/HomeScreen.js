@@ -55,11 +55,11 @@ class HomeScreen extends Component {
         </View>
         <View style={styles.cardContainer}>
           <ScrollView horizontal={true}>
-            <Card text={'Excellent'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")}/>
-            <Card text={'Okay'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")}/>
-            <Card text={'Stressed'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} image={require("../assets/icons/card-emotes/stressed.png")}/>
-            <Card text={'Exhausted'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} image={require("../assets/icons/card-emotes/exhausted.png")}/>
-            <Card text={'Anxious'} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} image={require("../assets/icons/card-emotes/anxious.png")}/>
+            <Card text={'Excellent'} value={100} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")}/>
+            <Card text={'Okay'} value={75} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")}/>
+            <Card text={'Stressed'} value={50} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} image={require("../assets/icons/card-emotes/stressed.png")}/>
+            <Card text={'Exhausted'} value={25} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} image={require("../assets/icons/card-emotes/exhausted.png")}/>
+            <Card text={'Anxious'} value={1} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} image={require("../assets/icons/card-emotes/anxious.png")}/>
           </ScrollView>
         </View>
 

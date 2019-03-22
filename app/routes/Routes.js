@@ -90,7 +90,7 @@ const RegisterStack = createStackNavigator({
 })
 
 
-const AuthStack = createStackNavigator({ 'LogIn': LoginScreen });
+const AuthStack = createStackNavigator({ 'Login': LoginScreen });
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -100,7 +100,7 @@ const switchNavigator = createSwitchNavigator(
     Auth: AuthStack,
   },
   {
-    initialRouteName: 'App',
+    initialRouteName: 'Login',
   }
 
 )

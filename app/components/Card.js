@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native'
 import { LinearGradient } from 'expo'
+import { getInstance } from '../services/firebase/firebase'
 
 const styles = StyleSheet.create({
   card: {
@@ -47,8 +48,91 @@ const styles = StyleSheet.create({
   }
 })
 
-const Card = ({ text, route, navigation, colorBase, image }) => (
-  <TouchableOpacity style={styles.cardStyle} onPress={() => { navigation(route) }}>
+const firebase = getInstance()
+const weekDays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+const weeks = ['week1', 'week2', 'week3', 'week4']
+
+const getWeek = (day) => {
+  let week = '';
+  if(day > 21) {
+    week = weeks[3]
+  } else if(day > 14) {
+    week = weeks[2]
+  } else if(day > 7) {
+    week = weeks[1]
+  } else {
+    week = weeks[0]
+  }
+  return week
+}
+
+const addEmotion = async(rating, navigation, route) => {
+  if(firebase) {
+    const uid = firebase.auth().currentUser.uid
+    const timestamp = new Date()
+    const addDay = timestamp.getDay()
+    const db = firebase.database()
+    const monthDay = timestamp.getDate()
+    const week = getWeek(monthDay)
+    try {
+      const statref = await db.ref(`/users/${uid}/stats`).once('value')
+      const stats = statref.val()
+      if(stats.lastAddDay === addDay) {
+        const dailyTaps = stats.amountToday += 1
+        const total = stats.totalToday += rating
+        const average = total / dailyTaps
+        const dayAverages = {
+          ...stats.dailyAverage,
+          [weekDays[addDay]]: average,
+        }
+        const weekAverage = Object.values(dayAverages).reduce((a,b) => a + b)
+        await db.ref(`/users/${uid}/stats`).update({
+          amountToday: dailyTaps,
+          dailyAverage: {
+            ...stats.dailyAverage,
+            [weekDays[addDay]]: average,
+          },
+          weeklyAverage: {
+            ...stats.weeklyAverage,
+            [week]: weekAverage,
+          },
+          totalToday: total
+        })
+        navigation(route)
+
+      } else {
+        const dailyTaps = 1
+        const total = rating
+        const average = total / dailyTaps
+        const dayAverages = {
+          ...stats.dailyAverage,
+          [weekDays[addDay]]: average,
+        }
+        const weekAverage = Object.values(dayAverages).reduce((a,b) => a + b)
+        await db.ref(`/users/${uid}/stats`).update({
+          amountToday: dailyTaps,
+          dailyAverage: {
+            ... stats.dailyAverage,
+            [weekDays[addDay]]: average,
+          },
+          weeklyAverage: {
+            ...stats.weeklyAverage,
+            [week]: weekAverage,
+          },
+          totalToday: total,
+          lastAddDay: addDay,
+        })
+        navigation(route)
+      }
+
+    } catch (error) {
+      Alert.alert(error)
+    }
+  }
+}
+
+const Card = ({ text, value, route, navigation, colorBase, image }) => (
+  <TouchableOpacity style={styles.cardStyle} onPress={() => { addEmotion(value, navigation, route) }}>
     <LinearGradient style={styles.card} colors={colorBase}>
       <View style={styles.view}>
         <Image style={styles.image} source={image} />
