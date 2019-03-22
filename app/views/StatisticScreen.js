@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Text, View, StyleSheet, ScrollView } from 'react-native'
+import { Alert, Text, View, StyleSheet, ScrollView, AsyncStorage } from 'react-native'
 import { LinearGradient } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
@@ -8,7 +8,10 @@ import { mainTextColor, highLight, exellentCardGradient, okayCardGradient, stres
 import DaysContainer from '../components/statistic/DaysContainer'
 import WeeksContainer from '../components/statistic/WeeksContainer'
 import { backGradient } from '../utils/styles'
+import { getInstance } from '../services/firebase/firebase'
 
+
+const firebase = getInstance()
 
 /*TODO: 
 -Get day and weekly average from firebase, if not given = 1
@@ -91,28 +94,43 @@ const styles = StyleSheet.create({
 });
 
 class StatisticScreen extends Component {
-
+    //1 is default value
     state = {
-        averagesDay: {
-            mon: 35,
-            tue: 0,
-            wed: 100,
-            thu: 195,
-            fri: 165,
-            sat: 110,
-            sun: 140,
-        },
-        averagesWeek: {
-            week1: 160,
-            week2: 75,
-            week3: 0,
-            week4: 195,
+        averages: {
+            dailyAverage: {
+                mon: 1,
+                tue: 1,
+                wed: 1,
+                thu: 1,
+                fri: 1,
+                sat: 1,
+                sun: 1,
+            },
+            weeklyAverage: {
+                week1: 1,
+                week2: 1,
+                week3: 1,
+                week4: 1,
+            }
         },
         weekly: true,
     }
+    componentDidMount = () => {
+        this.loadStatsFromFirebase()
+    }
+
+    loadStatsFromFirebase = async () => {
+        const currentUserId = firebase.auth().currentUser.uid
+        const userStats = firebase.database().ref("users/" + currentUserId + "/stats/");
+        userStats.on("value", async (snapshot) => {
+            const averages = snapshot.val()
+            await AsyncStorage.setItem('averages', JSON.stringify(averages))
+            this.setState({ averages: JSON.parse(await AsyncStorage.getItem('averages')) })
+        });
+    }
+
     render() {
         if (this.state.weekly) {
-            //get value from firebase, setState
             return (
                 <LinearGradient colors={backGradient} style={styles.container}>
                     {/* Insert top text here */}
@@ -136,7 +154,7 @@ class StatisticScreen extends Component {
                     </View>
 
 
-                    <DaysContainer averages={this.state.averagesDay} />
+                    <DaysContainer averages={this.state.averages.dailyAverage} />
 
                 </LinearGradient >
             )
@@ -145,7 +163,7 @@ class StatisticScreen extends Component {
                 <LinearGradient colors={backGradient} style={styles.container}>
                     {/* Insert top text here */}
                     <View style={styles.textContainer}>
-                        <Title text={'This month overview'} />
+                        <Title text={"This month's overview"} />
                         <SubTitle text={'A visual summary of your month'} />
                     </View>
                     <View style={styles.options}>
@@ -161,8 +179,8 @@ class StatisticScreen extends Component {
                         }} style={this.state.weekly ? styles.options_text : styles.options_text_selected}>Month</Text>
                     </View>
 
-                    <WeeksContainer averages={this.state.averagesWeek} />
-                    <SubTitle text={'April'} />
+                    <WeeksContainer averages={this.state.averages.weeklyAverage} />
+                    {/* <SubTitle text={'April'} /> */}
                 </LinearGradient>
             )
         }
