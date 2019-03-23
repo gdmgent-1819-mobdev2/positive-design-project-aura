@@ -113,7 +113,7 @@ class HomeScreen extends Component {
         this.setState({
           loading: false,
           allowEmotion: false,
-          emoteTimer: hours + ":" + minutes + ":" + seconds,
+          emoteTimer: ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2),
         })
         // Function will only be called again if the hour has not passed yet and a user is logged in
         if(firebase.auth().currentUser) {
@@ -127,13 +127,6 @@ class HomeScreen extends Component {
           allowEmotion: true,
         })
       }
-
-
-
-
-
-
-
 
     } else {
       this.setState({
@@ -202,7 +195,7 @@ class HomeScreen extends Component {
         return (
           <LinearGradient colors={backGradient} style={styles.container}>
             <View style={styles.textContainer}>
-              <Title text={'Welcome, ' + this.state.currentUserName} />
+              <Title text={'Hello, ' + this.state.currentUserName} />
               <SubTitle text={'How are you feeling today?'} />
 
             </View>
