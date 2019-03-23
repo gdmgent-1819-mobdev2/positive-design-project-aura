@@ -3,8 +3,10 @@ import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
-import { Title, SubTitle } from '../components/textComponents/'
+import { Title, SubTitle, Body } from '../components/textComponents/'
 import { exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
+import { getInstance } from '../services/firebase/firebase'
+import { PrimaryButton } from '../components/buttonComponents'
 
 import { backGradient } from '../utils/styles'
 
@@ -43,28 +45,105 @@ const styles = StyleSheet.create({
   },
 });
 
+const firebase = getInstance()
+
 class HomeScreen extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true,
+      allowEmotion: false
+    }
+  }
+
+  getHoursFromDate = (timestamp) => {
+    return timestamp / 3600000
+  }
+
+  checkTime = async() => {
+    if(firebase) {
+      const uid = firebase.auth().currentUser.uid
+      const db = firebase.database()
+      const ref = await db.ref(`/users/${uid}`).once('value')
+      const refvalue = ref.val()
+      const lastTimestamp = refvalue.lastAddTimestamp
+      const now = new Date()
+      const currentTimestampHours = this.getHoursFromDate(now.getTime())
+      const lastTimeStampHours = this.getHoursFromDate(lastTimestamp)
+      if((currentTimestampHours - lastTimeStampHours) < 1) {
+        this.setState({
+          loading: false,
+          allowEmotion: false,
+        })
+      } else {
+        this.setState({
+          loading: false,
+          allowEmotion: true,
+        })
+      }
+    } else {
+      this.setState({
+        loading: false,
+        allowEmotion: false,
+      })
+    }
+  }
+
+  componentDidMount() {
+    this.checkTime()
+  }
+
   render() {
-    return (
-      <LinearGradient colors={backGradient} style={styles.container}>
-        {/* Insert top text here */}
-        <View style={styles.textContainer}>
-          <Title text={'Welcome, User'} />
-          <SubTitle text={'How are you feeling today?'} />
-
-        </View>
-        <View style={styles.cardContainer}>
-          <ScrollView horizontal={true}>
-            <Card text={'Excellent'} value={100} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")}/>
-            <Card text={'Okay'} value={75} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")}/>
-            <Card text={'Stressed'} value={50} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} image={require("../assets/icons/card-emotes/stressed.png")}/>
-            <Card text={'Exhausted'} value={25} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} image={require("../assets/icons/card-emotes/exhausted.png")}/>
-            <Card text={'Anxious'} value={1} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} image={require("../assets/icons/card-emotes/anxious.png")}/>
-          </ScrollView>
-        </View>
-
-      </LinearGradient>
-    );
+    if(this.state.loading === true) {
+      return (
+        <LinearGradient colors={backGradient} style={styles.container}>
+          <View style={styles.textContainer}>
+            <Title text={'Welcome, User'} />
+            <SubTitle text={'How are you feeling today?'} />
+  
+          </View>
+          <View style={styles.cardContainer}>
+            <Body text={'loading...'} />
+          </View>
+        </LinearGradient>
+      )
+    } else {
+      if(this.state.allowEmotion === false) {
+        return (
+          <LinearGradient colors={backGradient} style={styles.container}>
+            <View style={styles.textContainer}>
+              <Title text={'Welcome, User'} />
+              <SubTitle text={'How are you feeling today?'} />
+    
+            </View>
+            <View style={styles.container}>
+              <Body text={'You have already checked in for this hour. You can go to the exercises or check back later.'} />
+              <PrimaryButton text={'Go to exercises'} route={'Details'} navigation={this.props.navigation.navigate} />
+            </View>
+          </LinearGradient>
+        )
+      } else {
+        return (
+          <LinearGradient colors={backGradient} style={styles.container}>
+            <View style={styles.textContainer}>
+              <Title text={'Welcome, User'} />
+              <SubTitle text={'How are you feeling today?'} />
+    
+            </View>
+            <View style={styles.cardContainer}>
+              <ScrollView horizontal={true}>
+                <Card text={'Excellent'} value={100} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")}/>
+                <Card text={'Okay'} value={75} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")}/>
+                <Card text={'Stressed'} value={50} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} image={require("../assets/icons/card-emotes/stressed.png")}/>
+                <Card text={'Exhausted'} value={25} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} image={require("../assets/icons/card-emotes/exhausted.png")}/>
+                <Card text={'Anxious'} value={1} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} image={require("../assets/icons/card-emotes/anxious.png")}/>
+              </ScrollView>
+            </View>
+    
+          </LinearGradient>
+        );
+      }
+    }
   }
 }
 
