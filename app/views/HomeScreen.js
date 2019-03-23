@@ -90,7 +90,9 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    this.checkTime()
+    setInterval(() => {
+      this.checkTime()
+    }, 300000)
   }
 
   render() {
