@@ -82,7 +82,7 @@ export class RegisterPerson extends Component {
           lastSessionInHour: null,
           sendEmoteAvailable: true,
           firstEmoteDate: null,
-          notification: 'on',
+          notification: true,
           darkMode: 'on',
           stats: {
             amountToday: 0,
