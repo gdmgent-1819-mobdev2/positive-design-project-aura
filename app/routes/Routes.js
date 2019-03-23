@@ -130,7 +130,6 @@ const switchNavigator = createSwitchNavigator({
   }, {
     initialRouteName: 'Login',
   }
-
 )
 
 export default createAppContainer(switchNavigator)
