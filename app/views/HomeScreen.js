@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, AsyncStorage } from 'react-native'
 import { LinearGradient, Permissions, Notifications } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
@@ -53,7 +53,9 @@ class HomeScreen extends Component {
     super(props)
     this.state = {
       loading: true,
-      allowEmotion: false
+      allowEmotion: false,
+      currentUserName: '',
+      emoteTimer: '',
     }
   }
 
@@ -65,7 +67,7 @@ class HomeScreen extends Component {
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     let finalStatus = status
     console.log(status)
-    if(status !== 'granted') {
+    if (status !== 'granted') {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
       finalStatus = status
     }
@@ -88,7 +90,7 @@ class HomeScreen extends Component {
   }
 
   checkTime = async () => {
-    if (firebase) {
+    if (firebase && firebase.auth().currentUser) {
       const uid = firebase.auth().currentUser.uid
       const db = firebase.database()
       const ref = await db.ref(`/users/${uid}`).once('value')
@@ -98,9 +100,20 @@ class HomeScreen extends Component {
       const currentTimestampHours = this.getHoursFromDate(now.getTime())
       const lastTimeStampHours = this.getHoursFromDate(lastTimestamp)
       if ((currentTimestampHours - lastTimeStampHours) < 1) {
+
+        const emoteTimer = (lastTimestamp + 60 * 60 * 1000) - now.getTime()
+        let seconds = Math.floor(emoteTimer / 1000);
+        let minutes = Math.floor(seconds / 60);
+        let hours = Math.floor(minutes / 60);
+
+        hours %= 24;
+        minutes %= 60;
+        seconds %= 60;
+
         this.setState({
           loading: false,
           allowEmotion: false,
+          emoteTimer: hours + ":" + minutes + ":" + seconds,
         })
         // Function will only be called again if the hour has not passed yet and a user is logged in
         if(firebase.auth().currentUser) {
@@ -114,6 +127,14 @@ class HomeScreen extends Component {
           allowEmotion: true,
         })
       }
+
+
+
+
+
+
+
+
     } else {
       this.setState({
         loading: false,
@@ -122,9 +143,29 @@ class HomeScreen extends Component {
     }
   }
 
+
+
   componentDidMount() {
     this.checkTime()
     this.registerNotifications()
+
+    setInterval(() => {
+      this.checkTime()
+    }, 1000)
+  }
+
+  componentWillMount = () => {
+    this.setUserName()
+
+  }
+
+  setUserName = async () => {
+
+    await AsyncStorage.getItem('currentUserName').then((userName) => {
+      this.setState({ currentUserName: JSON.parse(userName) })
+    })
+
+
   }
 
   render() {
@@ -132,7 +173,7 @@ class HomeScreen extends Component {
       return (
         <LinearGradient colors={backGradient} style={styles.container}>
           <View style={styles.textContainer}>
-            <Title text={'Welcome, User'} />
+            <Title text={'HiLow, User'} />
             <SubTitle text={'How are you feeling today?'} />
 
           </View>
@@ -146,11 +187,12 @@ class HomeScreen extends Component {
         return (
           <LinearGradient colors={backGradient} style={styles.container}>
             <View style={styles.textContainer}>
-              <Title text={'Welcome, User'} />
-              <SubTitle text={'How are you feeling today?'} />
+              <Title text={'HiLow, ' + this.state.currentUserName} />
+              <SubTitle text={'Come again in'} />
 
             </View>
             <View style={styles.container}>
+              <Title text={this.state.emoteTimer} />
               <Body text={'You have already checked in for this hour. You can go to the exercises or check back later.'} />
               <PrimaryButton text={'Go to exercises'} route={'Details'} navigation={this.props.navigation.navigate} />
             </View>
@@ -160,7 +202,7 @@ class HomeScreen extends Component {
         return (
           <LinearGradient colors={backGradient} style={styles.container}>
             <View style={styles.textContainer}>
-              <Title text={'Welcome, User'} />
+              <Title text={'Welcome, ' + this.state.currentUserName} />
               <SubTitle text={'How are you feeling today?'} />
 
             </View>

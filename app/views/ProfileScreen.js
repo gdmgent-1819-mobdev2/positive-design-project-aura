@@ -93,9 +93,13 @@ class ProfileScreen extends Component {
         this.state = {
             darkMode: true,
             notification: true,
-            currentUserName: '',
-            userDataLoaded: false
+            currentUserName: "",
+            lastSession: "",
         }
+    }
+
+    getHoursFromDate = (timestamp) => {
+        return timestamp / 3600000
     }
 
     signOutUser = async () => {
@@ -128,35 +132,73 @@ class ProfileScreen extends Component {
 
 
     toggleNotification = async () => {
-        const currentUserId = firebase.auth().currentUser.uid;
-        const ref = firebase
-            .database()
-            .ref("users/" + currentUserId + "/notification");
 
-        const snapshot = await ref.once("value");
-        if (snapshot) {
-            this.setState({ notification: false });
-            console.log(this.state.notification);
-            ref.set(false);
-            console.log(snapshot)
-        } else {
-            this.setState({ notification: true });
-            console.log(this.state.notification);
-            ref.set(true);
+        try {
+            const currentUserId = firebase.auth().currentUser.uid;
+            const ref = firebase
+                .database()
+                .ref("users/" + currentUserId + "/notification");
+
+            const snapshot = await ref.once("value");
+            if (snapshot) {
+                this.setState({ notification: false });
+                console.log(this.state.notification);
+                ref.set(false);
+                console.log(snapshot)
+            } else {
+                this.setState({ notification: true });
+                console.log(this.state.notification);
+                ref.set(true);
+            }
+        } catch (e) {
+            console.log(e);
         }
+
+
     };
 
     componentWillMount = () => {
-        this.setUserName().then(() => {
-            this.setState({ userDataLoaded: true })
-            console.log('ddidmount')
-        })
+        this.setUserName()
+        this.getLastSession()
     }
 
+
+
     setUserName = async () => {
+
         await AsyncStorage.getItem('currentUserName').then((userName) => {
             this.setState({ currentUserName: JSON.parse(userName) })
         })
+
+    }
+
+
+    getLastSession = async () => {
+
+        try {
+            const currentUserId = firebase.auth().currentUser.uid;
+            const ref = firebase.database().ref("users/" + currentUserId + "/lastAddTimestamp");
+
+
+            ref.on("value", async (lastTimestamp) => {
+                const now = new Date()
+                const currentTimestampHours = this.getHoursFromDate(now.getTime())
+                const lastTimeStampHours = this.getHoursFromDate(lastTimestamp.val())
+                const lastSessionHours = currentTimestampHours - lastTimeStampHours
+                if (lastSessionHours >= 0) {
+                    this.setState({ lastSession: parseInt(lastSessionHours, 10) })
+                    console.log('More= than 0');
+                } else if (lastSessionHours < 0) {
+                    console.log('less than 0');
+                    this.setState({ lastSession: 0 })
+                }
+
+            });
+
+
+        } catch (e) {
+            console.log(e);
+        }
 
     }
 
@@ -172,7 +214,7 @@ class ProfileScreen extends Component {
                         <Title text={"PROFILE"} />
                         <View style={styles.section_container}>
                             <SubTitle text={this.state.currentUserName} />
-                            <SecondarySubtitle text={"Last session 6 hours ago"} />
+                            <SecondarySubtitle text={"Last session " + this.state.lastSession + " hours ago"} />
                         </View>
                     </View>
                     <View style={styles.section_wrapper}>
