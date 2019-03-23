@@ -107,12 +107,6 @@ class ProfileScreen extends Component {
     };
 
 
-    componentDidMount = () => {
-        this.setUserName().then(() => {
-            this.setState({ userDataLoaded: true })
-            console.log('ddidmount')
-        })
-    }
 
 
 

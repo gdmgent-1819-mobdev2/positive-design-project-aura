@@ -27,6 +27,13 @@ export const highLight = '#F50097'
 export const grey = '#D0CFD2'
 
 
+
+// componentDidMount = () => {
+//     this.setUserName().then(() => {
+//         this.setState({ userDataLoaded: true })
+//         console.log('ddidmount')
+//     })
+
 // componentDidMount = () => {
 //     this.setUserName().then(() => {
 //         this.setState({ userDataLoaded: true })

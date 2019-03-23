@@ -80,7 +80,7 @@ class LoginScreen extends Component {
         currentUser.on("value", async (snapshot) => {
           const currentUserName = snapshot.val().firstName
           await AsyncStorage.setItem('currentUserName', JSON.stringify(currentUserName))
-          console.log(currentUserName)
+          console.log(JSON.parse(await AsyncStorage.getItem('currentUserName')))
         });
         this.props.navigation.navigate('App')
       })

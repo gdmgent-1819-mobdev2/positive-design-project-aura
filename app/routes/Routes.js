@@ -102,7 +102,7 @@ const TabNavigator = createBottomTabNavigator({
     style: styles.nav,
     showLabel: false,
   },
-  initialRouteName: 'Profile',
+  initialRouteName: 'Home',
 })
 
 const RegisterStack = createStackNavigator({
@@ -128,7 +128,7 @@ const switchNavigator = createSwitchNavigator({
   App: TabNavigator,
   Auth: AuthStack,
 }, {
-  initialRouteName: 'App',
+  initialRouteName: 'Login',
 })
 
 export default createAppContainer(switchNavigator)
