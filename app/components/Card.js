@@ -54,11 +54,11 @@ const weeks = ['week1', 'week2', 'week3', 'week4']
 
 const getWeek = (day) => {
   let week = '';
-  if(day > 21) {
+  if (day > 21) {
     week = weeks[3]
-  } else if(day > 14) {
+  } else if (day > 14) {
     week = weeks[2]
-  } else if(day > 7) {
+  } else if (day > 7) {
     week = weeks[1]
   } else {
     week = weeks[0]
@@ -66,8 +66,8 @@ const getWeek = (day) => {
   return week
 }
 
-const addEmotion = async(rating, navigation, route) => {
-  if(firebase) {
+const addEmotion = async (rating, navigation, route) => {
+  if (firebase) {
     const uid = firebase.auth().currentUser.uid
     const timestamp = new Date()
     const addDay = timestamp.getDay()
@@ -77,7 +77,7 @@ const addEmotion = async(rating, navigation, route) => {
     try {
       const statref = await db.ref(`/users/${uid}/stats`).once('value')
       const stats = statref.val()
-      if(stats.lastAddDay === addDay) {
+      if (stats.lastAddDay === addDay) {
         const dailyTaps = stats.amountToday += 1
         const total = stats.totalToday += rating
         const average = ((total / dailyTaps) * 2)
@@ -85,7 +85,7 @@ const addEmotion = async(rating, navigation, route) => {
           ...stats.dailyAverage,
           [weekDays[addDay]]: average,
         }
-        const weekAverage = ((Object.values(dayAverages).reduce((a,b) => a + b) / 7) * 2)
+        const weekAverage = ((Object.values(dayAverages).reduce((a, b) => a + b) / 7) * 2)
         await db.ref(`/users/${uid}/stats`).update({
           amountToday: dailyTaps,
           dailyAverage: {
@@ -108,11 +108,11 @@ const addEmotion = async(rating, navigation, route) => {
           ...stats.dailyAverage,
           [weekDays[addDay]]: average,
         }
-        const weekAverage = ((Object.values(dayAverages).reduce((a,b) => a + b) / 7) * 2)
+        const weekAverage = ((Object.values(dayAverages).reduce((a, b) => a + b) / 7) * 2)
         await db.ref(`/users/${uid}/stats`).update({
           amountToday: dailyTaps,
           dailyAverage: {
-            ... stats.dailyAverage,
+            ...stats.dailyAverage,
             [weekDays[addDay]]: average,
           },
           weeklyAverage: {

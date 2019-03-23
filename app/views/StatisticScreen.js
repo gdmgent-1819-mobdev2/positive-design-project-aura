@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
         color: highLight,
         fontSize: 24,
         margin: 5,
+
     },
     text: {
         color: mainTextColor,
@@ -115,7 +116,9 @@ class StatisticScreen extends Component {
         },
         weekly: true,
     }
-    componentDidMount = () => {
+
+    //this happens before render
+    componentWillMount = () => {
         this.loadStatsFromFirebase()
     }
 
@@ -152,10 +155,7 @@ class StatisticScreen extends Component {
                             })
                         }} style={this.state.weekly ? styles.options_text : styles.options_text_selected}>Month</Text>
                     </View>
-
-
                     <DaysContainer averages={this.state.averages.dailyAverage} />
-
                 </LinearGradient >
             )
         } else {
