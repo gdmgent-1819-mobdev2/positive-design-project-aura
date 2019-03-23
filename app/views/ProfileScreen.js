@@ -93,15 +93,39 @@ class ProfileScreen extends Component {
 
   signOutUser = async () => {
     try {
-      await firebase.auth().signOut()
-      .then(() => {
-        this.props.navigation.navigate('Login')
-        console.log("Navigate succesful")
-      })
+      await firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.props.navigation.navigate("Login");
+          console.log("Navigate succesful");
+        });
     } catch (e) {
       console.log(e);
     }
   };
+  
+
+  toggleNotification = async () => {
+    const currentUserId = firebase.auth().currentUser.uid;
+    const ref = firebase
+      .database()
+      .ref("users/" + currentUserId + "/notification");
+
+    const snapshot = await ref.once("value");
+    if (snapshot) {
+      this.setState({ notification: false });
+      console.log(this.state.notification);
+      ref.set(false);
+      console.log(snapshot)
+    } else {
+      this.setState({ notification: true });
+      console.log(this.state.notification);
+      ref.set(true);
+    }
+  };
+  
+
 
   render() {
     return (
@@ -155,18 +179,18 @@ class ProfileScreen extends Component {
                     width: 180
                   }}
                   size="medium"
-                  onToggle={() =>
-                    this.state.notification
-                      ? this.setState({ notification: false })
-                      : this.setState({ notification: true })
-                  }
+                  onToggle={() => {
+                    this.toggleNotification();
+                  }}
                 />
               </View>
             </View>
           </View>
           <TouchableOpacity
             style={styles.loginBtn}
-            onPress={() => {this.signOutUser()}}
+            onPress={() => {
+              this.signOutUser();
+            }}
           >
             <Text style={styles.btnText}>Sign out</Text>
           </TouchableOpacity>
