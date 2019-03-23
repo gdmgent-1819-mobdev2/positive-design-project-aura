@@ -115,6 +115,12 @@ class HomeScreen extends Component {
           allowEmotion: false,
           emoteTimer: hours + ":" + minutes + ":" + seconds,
         })
+        // Function will only be called again if the hour has not passed yet and a user is logged in
+        if(firebase.auth().currentUser) {
+          setTimeout(() => {
+            this.checkTime()
+          }, 2000)
+        }
       } else {
         this.setState({
           loading: false,
@@ -142,6 +148,7 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.checkTime()
     this.registerNotifications()
+
     setInterval(() => {
       this.checkTime()
     }, 1000)
@@ -157,6 +164,7 @@ class HomeScreen extends Component {
     await AsyncStorage.getItem('currentUserName').then((userName) => {
       this.setState({ currentUserName: JSON.parse(userName) })
     })
+
 
   }
 
