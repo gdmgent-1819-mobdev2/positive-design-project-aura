@@ -86,11 +86,16 @@ const styles = StyleSheet.create({
 });
 
 class ProfileScreen extends Component {
-    state = {
-        darkMode: true,
-        notification: true,
-        currentUserName: '',
-        userDataLoaded: false
+
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            darkMode: true,
+            notification: true,
+            currentUserName: '',
+            userDataLoaded: false
+        }
     }
 
     signOutUser = async () => {
@@ -105,9 +110,6 @@ class ProfileScreen extends Component {
             console.log(e);
         }
     };
-
-
-
 
 
     signOutUser = async () => {
@@ -144,6 +146,19 @@ class ProfileScreen extends Component {
         }
     };
 
+    componentWillMount = () => {
+        this.setUserName().then(() => {
+            this.setState({ userDataLoaded: true })
+            console.log('ddidmount')
+        })
+    }
+
+    setUserName = async () => {
+        await AsyncStorage.getItem('currentUserName').then((userName) => {
+            this.setState({ currentUserName: JSON.parse(userName) })
+        })
+
+    }
 
 
     render() {
@@ -156,7 +171,7 @@ class ProfileScreen extends Component {
                     <View style={styles.section_wrapper}>
                         <Title text={"PROFILE"} />
                         <View style={styles.section_container}>
-                            <SubTitle text={"User Name"} />
+                            <SubTitle text={this.state.currentUserName} />
                             <SecondarySubtitle text={"Last session 6 hours ago"} />
                         </View>
                     </View>
