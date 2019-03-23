@@ -1,5 +1,12 @@
-import React, { Component } from 'react'
-import { createSwitchNavigator, createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation'
+import React, {
+  Component
+} from 'react'
+import {
+  createSwitchNavigator,
+  createStackNavigator,
+  createBottomTabNavigator,
+  createAppContainer
+} from 'react-navigation'
 import TaskScreen from '../views/TaskScreen'
 import HomeScreen from '../views/HomeScreen'
 import ProfileScreen from '../views/ProfileScreen'
@@ -7,11 +14,24 @@ import StatisticScreen from '../views/StatisticScreen'
 import LoginScreen from '../views/LoginScreen'
 import RegisterScreen from '../views/RegisterScreen'
 import TaskDetail from '../views/TaskDetail'
-import { Ionicons } from '@expo/vector-icons' // 6.2.2
-import { Text, View, StyleSheet } from 'react-native';
-import { highLight } from '../utils/styles/'
-import { getTabBarIcon } from '../components/IconWithBadge'
-import { RegisterBase, RegisterPerson } from '../views/Register/'
+import {
+  Ionicons
+} from '@expo/vector-icons' // 6.2.2
+import {
+  Text,
+  View,
+  StyleSheet
+} from 'react-native';
+import {
+  highLight
+} from '../utils/styles/'
+import {
+  getTabBarIcon
+} from '../components/IconWithBadge'
+import {
+  RegisterBase,
+  RegisterPerson
+} from '../views/Register/'
 
 const styles = StyleSheet.create({
   nav: {
@@ -51,31 +71,39 @@ const HomeStack = createStackNavigator({
   }
 }, {
 
-    initialRouteName: 'Home',
-    headerMode: 'none',
-  })
+  initialRouteName: 'Home',
+  headerMode: 'none',
+})
 
-const TabNavigator = createBottomTabNavigator(
-  {
-    'Profile': { screen: ProfileScreen },
-    'Home': { screen: HomeStack },
-    'Statistic': { screen: StatisticScreen },
+const TabNavigator = createBottomTabNavigator({
+  'Profile': {
+    screen: ProfileScreen
   },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) =>
-        getTabBarIcon(navigation, focused, tintColor),
-    }),
-    animationEnabled: 'true',
-    tabBarOptions: {
-      activeTintColor: highLight,
-      inactiveTintColor: 'white',
-      style: styles.nav,
-      showLabel: false,
-    },
-    initialRouteName: 'Home',
-  }
-)
+  'Home': {
+    screen: HomeStack
+  },
+  'Statistic': {
+    screen: StatisticScreen
+  },
+}, {
+  defaultNavigationOptions: ({
+    navigation
+  }) => ({
+    tabBarIcon: ({
+        focused,
+        tintColor
+      }) =>
+      getTabBarIcon(navigation, focused, tintColor),
+  }),
+  animationEnabled: 'true',
+  tabBarOptions: {
+    activeTintColor: highLight,
+    inactiveTintColor: 'white',
+    style: styles.nav,
+    showLabel: false,
+  },
+  initialRouteName: 'Home',
+})
 
 const RegisterStack = createStackNavigator({
   'Base': {
@@ -90,20 +118,17 @@ const RegisterStack = createStackNavigator({
 })
 
 
-const AuthStack = createStackNavigator({ 'Login': LoginScreen });
+const AuthStack = createStackNavigator({
+  'Login': LoginScreen
+});
 
-const switchNavigator = createSwitchNavigator(
-  {
-    Login: LoginScreen,
-    Register: RegisterStack,
-    App: TabNavigator,
-    Auth: AuthStack,
-  },
-  {
-    initialRouteName: 'Login',
-  }
-
-)
+const switchNavigator = createSwitchNavigator({
+  Login: LoginScreen,
+  Register: RegisterStack,
+  App: TabNavigator,
+  Auth: AuthStack,
+}, {
+  initialRouteName: 'Login',
+})
 
 export default createAppContainer(switchNavigator)
-
