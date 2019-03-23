@@ -64,12 +64,8 @@ class HomeScreen extends Component {
   registerNotifications = async () => {
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     let finalStatus = status
-<<<<<<< HEAD
     console.log(status)
     if(status !== 'granted') {
-=======
-    if (status !== 'granted') {
->>>>>>> origin/master
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
       finalStatus = status
     }

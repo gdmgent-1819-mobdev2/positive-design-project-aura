@@ -74,12 +74,11 @@ const cancelNotification = async() => {
   }
 }
 
-const scheduleNotification = async(title, body) => {
+const scheduleNotification = async() => {
   console.log('scheduling notification')
-  console.log(notifData)
   const newNotif = await Notifications.scheduleLocalNotificationAsync({
-    body: body,
-    title: title,
+    body: 'Check back in to track your mood',
+    title: 'Tracking is unlocked!',
   }, {
     time: ((new Date()).getTime() + 3600000)
   })
@@ -129,7 +128,7 @@ const addEmotion = async(rating, navigation, route) => {
             totalToday: total
           }
         })
-        await scheduleNotification('Reminder', 'Come check in to track your mood')
+        await scheduleNotification()
         navigation(route)
 
       } else {
@@ -157,7 +156,7 @@ const addEmotion = async(rating, navigation, route) => {
             lastAddDay: addDay,
           }
         })
-        await scheduleNotification('Reminder', 'Come check in to track your mood')
+        await scheduleNotification()
         navigation(route)
       }
 
