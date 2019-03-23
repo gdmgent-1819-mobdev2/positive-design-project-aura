@@ -102,6 +102,12 @@ class HomeScreen extends Component {
           loading: false,
           allowEmotion: false,
         })
+        // Function will only be called again if the hour has not passed yet and a user is logged in
+        if(firebase.auth().currentUser) {
+          setTimeout(() => {
+            this.checkTime()
+          }, 2000)
+        }
       } else {
         this.setState({
           loading: false,
@@ -119,9 +125,6 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.checkTime()
     this.registerNotifications()
-    setInterval(() => {
-      this.checkTime()
-    }, 300000)
   }
 
   render() {
