@@ -4,7 +4,7 @@ import { SecondaryButton } from "../components/buttonComponents/"
 import { SecondarySubtitle } from "../components/textComponents/"
 import { Logo } from "../components/textComponents/"
 import { getInstance } from '../services/firebase/firebase'
-
+import { UserProvider } from '../context/userContext'
 const firebase = getInstance()
 
 const styles = StyleSheet.create({
@@ -75,45 +75,61 @@ class LoginScreen extends Component {
     }
     firebase.auth().signInWithEmailAndPassword(user.email, user.pass)
       .then(() => {
+
+        const currentUser = firebase.database().ref("users/" + firebase.auth().currentUser.uid);
+        currentUser.on("value", async (snapshot) => {
+          const currentUserName = snapshot.val().firstName
+          await AsyncStorage.setItem('currentUserName', JSON.stringify(currentUserName))
+          console.log(currentUserName)
+        });
         this.props.navigation.navigate('App')
       })
       .catch(error => {
         Alert.alert(error.code + ': ' + error.message)
       })
+
+
+
+
+
+    //console.log(currentUserName)
+
   }
 
   render() {
     return (
+
       <View style={styles.container}>
-          <View style={styles.view}>
-              <Logo />
-              <SecondarySubtitle
-                  text={"It is not the mountain we conquer but ourselves."}
-                  style={styles.center}
-              />
-          </View>
-          <View style={styles.view}>
-              <TextInput 
-                style={styles.inputField} 
-                onChangeText={(text) => {this.setState({emailField: text})}}
-                placeholder={'E-mail'}
-                keyboardType={'email-address'}
-              />
-              <TextInput 
-                style={styles.inputField}
-                onChangeText={(text) => {this.setState({passField: text})}}
-                placeholder={'Password'}
-                autocomplete={'password'}
-                secureTextEntry={true}
-              />
-          </View>
-          <View>
-              <TouchableOpacity style={styles.loginBtn} onPress={() => {this.loginUser()}} >
-                <Text style={styles.btnText}>Login</Text>
-              </TouchableOpacity>
-              <SecondaryButton text={"Register"} route={"Register"} navigation={this.props.navigation.navigate} />
-          </View>
+        <View style={styles.view}>
+          <Logo />
+          <SecondarySubtitle
+            text={"It is not the mountain we conquer but ourselves."}
+            style={styles.center}
+          />
+        </View>
+        <View style={styles.view}>
+          <TextInput
+            style={styles.inputField}
+            onChangeText={(text) => { this.setState({ emailField: text }) }}
+            placeholder={'E-mail'}
+            keyboardType={'email-address'}
+          />
+          <TextInput
+            style={styles.inputField}
+            onChangeText={(text) => { this.setState({ passField: text }) }}
+            placeholder={'Password'}
+            autocomplete={'password'}
+            secureTextEntry={true}
+          />
+        </View>
+        <View>
+          <TouchableOpacity style={styles.loginBtn} onPress={() => { this.loginUser() }} >
+            <Text style={styles.btnText}>Login</Text>
+          </TouchableOpacity>
+          <SecondaryButton text={"Register"} route={"Register"} navigation={this.props.navigation.navigate} />
+        </View>
       </View>
+
     );
   }
 

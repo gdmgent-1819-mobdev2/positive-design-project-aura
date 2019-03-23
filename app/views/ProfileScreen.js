@@ -88,8 +88,9 @@ const styles = StyleSheet.create({
 class ProfileScreen extends Component {
     state = {
         darkMode: true,
-        notification: true
-    };
+        notification: true,
+        currentUserName: '',
+    }
 
     signOutUser = async () => {
         try {
@@ -97,12 +98,23 @@ class ProfileScreen extends Component {
                 .then(() => {
                     this.props.navigation.navigate('Login')
                     console.log("Navigate succesful")
+                    AsyncStorage.clear()
                 })
         } catch (e) {
             console.log(e);
         }
     };
 
+
+    componentDidMount = () => {
+        this.setUserName()
+    }
+
+
+
+    setUserName = async () => {
+        this.setState({ currentUserName: await AsyncStorage.getItem('currentUserName') })
+    }
     render() {
         return (
             <LinearGradient colors={backGradient} style={styles.container}>
