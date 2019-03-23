@@ -84,6 +84,7 @@ export class RegisterPerson extends Component {
           firstEmoteDate: null,
           notification: false,
           darkMode: true,
+
           stats: {
             amountToday: 0,
             dailyAverage: {
