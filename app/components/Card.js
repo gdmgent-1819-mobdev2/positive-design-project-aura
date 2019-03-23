@@ -70,6 +70,7 @@ const addEmotion = async(rating, navigation, route) => {
   if(firebase) {
     const uid = firebase.auth().currentUser.uid
     const timestamp = new Date()
+    const lastActivity = timestamp.getTime()
     const addDay = timestamp.getDay()
     const db = firebase.database()
     const monthDay = timestamp.getDate()
@@ -86,17 +87,20 @@ const addEmotion = async(rating, navigation, route) => {
           [weekDays[addDay]]: average,
         }
         const weekAverage = ((Object.values(dayAverages).reduce((a,b) => a + b) / 7) * 2)
-        await db.ref(`/users/${uid}/stats`).update({
-          amountToday: dailyTaps,
-          dailyAverage: {
-            ...stats.dailyAverage,
-            [weekDays[addDay]]: average,
-          },
-          weeklyAverage: {
-            ...stats.weeklyAverage,
-            [week]: weekAverage,
-          },
-          totalToday: total
+        await db.ref(`/users/${uid}`).update({
+          lastAddTimestamp: lastActivity,
+          stats: {
+            amountToday: dailyTaps,
+            dailyAverage: {
+              ...stats.dailyAverage,
+              [weekDays[addDay]]: average,
+            },
+            weeklyAverage: {
+              ...stats.weeklyAverage,
+              [week]: weekAverage,
+            },
+            totalToday: total
+          }
         })
         navigation(route)
 
@@ -109,18 +113,21 @@ const addEmotion = async(rating, navigation, route) => {
           [weekDays[addDay]]: average,
         }
         const weekAverage = ((Object.values(dayAverages).reduce((a,b) => a + b) / 7) * 2)
-        await db.ref(`/users/${uid}/stats`).update({
-          amountToday: dailyTaps,
-          dailyAverage: {
-            ... stats.dailyAverage,
-            [weekDays[addDay]]: average,
-          },
-          weeklyAverage: {
-            ...stats.weeklyAverage,
-            [week]: weekAverage,
-          },
-          totalToday: total,
-          lastAddDay: addDay,
+        await db.ref(`/users/${uid}`).update({
+          lastAddTimestamp: lastActivity,
+          stats: {
+            amountToday: dailyTaps,
+            dailyAverage: {
+              ...stats.dailyAverage,
+              [weekDays[addDay]]: average,
+            },
+            weeklyAverage: {
+              ...stats.weeklyAverage,
+              [week]: weekAverage,
+            },
+            totalToday: total,
+            lastAddDay: addDay,
+          }
         })
         navigation(route)
       }
