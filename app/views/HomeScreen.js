@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
 });
 
 const firebase = getInstance()
+const db = firebase.database()
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -63,7 +64,8 @@ class HomeScreen extends Component {
   registerNotifications = async () => {
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     let finalStatus = status
-    if (status !== 'granted') {
+    console.log(status)
+    if(status !== 'granted') {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
       finalStatus = status
     }
@@ -72,8 +74,17 @@ class HomeScreen extends Component {
       return
     }
     console.log('getting token')
-    let token = await Notifications.getExpoPushTokenAsync()
-    console.log(token)
+    try {
+      let token = await Notifications.getExpoPushTokenAsync()
+      let uid = firebase.auth().currentUser.uid
+      await db.ref(`/users/${uid}`).update({
+        notifications: true,
+        expoPushToken: token
+      })
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   checkTime = async () => {
@@ -107,10 +118,10 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     this.checkTime()
+    this.registerNotifications()
     setInterval(() => {
       this.checkTime()
     }, 300000)
-    // this.registerNotifications()
   }
 
   render() {
