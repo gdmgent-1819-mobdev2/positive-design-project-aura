@@ -60,15 +60,15 @@ class HomeScreen extends Component {
     return timestamp / 3600000
   }
 
-  registerNotifications = async() => {
+  registerNotifications = async () => {
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     let finalStatus = status
-    if(status !== 'granted') {
+    if (status !== 'granted') {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
       finalStatus = status
     }
 
-    if(finalStatus !== 'granted') {
+    if (finalStatus !== 'granted') {
       return
     }
     console.log('getting token')
@@ -76,8 +76,8 @@ class HomeScreen extends Component {
     console.log(token)
   }
 
-  checkTime = async() => {
-    if(firebase) {
+  checkTime = async () => {
+    if (firebase) {
       const uid = firebase.auth().currentUser.uid
       const db = firebase.database()
       const ref = await db.ref(`/users/${uid}`).once('value')
@@ -86,7 +86,7 @@ class HomeScreen extends Component {
       const now = new Date()
       const currentTimestampHours = this.getHoursFromDate(now.getTime())
       const lastTimeStampHours = this.getHoursFromDate(lastTimestamp)
-      if((currentTimestampHours - lastTimeStampHours) < 1) {
+      if ((currentTimestampHours - lastTimeStampHours) < 1) {
         this.setState({
           loading: false,
           allowEmotion: false,
@@ -114,13 +114,13 @@ class HomeScreen extends Component {
   }
 
   render() {
-    if(this.state.loading === true) {
+    if (this.state.loading === true) {
       return (
         <LinearGradient colors={backGradient} style={styles.container}>
           <View style={styles.textContainer}>
             <Title text={'Welcome, User'} />
             <SubTitle text={'How are you feeling today?'} />
-  
+
           </View>
           <View style={styles.cardContainer}>
             <Body text={'loading...'} />
@@ -128,13 +128,13 @@ class HomeScreen extends Component {
         </LinearGradient>
       )
     } else {
-      if(this.state.allowEmotion === false) {
+      if (this.state.allowEmotion === false) {
         return (
           <LinearGradient colors={backGradient} style={styles.container}>
             <View style={styles.textContainer}>
               <Title text={'Welcome, User'} />
               <SubTitle text={'How are you feeling today?'} />
-    
+
             </View>
             <View style={styles.container}>
               <Body text={'You have already checked in for this hour. You can go to the exercises or check back later.'} />
@@ -148,18 +148,18 @@ class HomeScreen extends Component {
             <View style={styles.textContainer}>
               <Title text={'Welcome, User'} />
               <SubTitle text={'How are you feeling today?'} />
-    
+
             </View>
             <View style={styles.cardContainer}>
               <ScrollView horizontal={true}>
-                <Card text={'Excellent'} value={100} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")}/>
-                <Card text={'Okay'} value={75} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")}/>
-                <Card text={'Stressed'} value={50} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} image={require("../assets/icons/card-emotes/stressed.png")}/>
-                <Card text={'Exhausted'} value={25} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} image={require("../assets/icons/card-emotes/exhausted.png")}/>
-                <Card text={'Anxious'} value={1} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} image={require("../assets/icons/card-emotes/anxious.png")}/>
+                <Card text={'Excellent'} value={100} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")} />
+                <Card text={'Okay'} value={75} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")} />
+                <Card text={'Stressed'} value={50} route={'Details'} navigation={this.props.navigation.navigate} colorBase={stressGradient} image={require("../assets/icons/card-emotes/stressed.png")} />
+                <Card text={'Exhausted'} value={25} route={'Details'} navigation={this.props.navigation.navigate} colorBase={anxiousGradient} image={require("../assets/icons/card-emotes/exhausted.png")} />
+                <Card text={'Anxious'} value={1} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exhaustedGradient} image={require("../assets/icons/card-emotes/anxious.png")} />
               </ScrollView>
             </View>
-    
+
           </LinearGradient>
         );
       }
