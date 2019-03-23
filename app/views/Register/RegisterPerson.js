@@ -79,11 +79,11 @@ export class RegisterPerson extends Component {
           firstName: userDetails.firstName,
           lastName: userDetails.lastName,
           email: userData.email,
-          lastSessionInHour: null,
+          lastAddTimestamp: 0,
           sendEmoteAvailable: true,
           firstEmoteDate: null,
-          notification: 'on',
-          darkMode: 'on',
+          notification: false,
+          darkMode: true,
           stats: {
             amountToday: 0,
             dailyAverage: {
