@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, ScrollView } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient, Permissions, Notifications } from 'expo'
 import Card from '../components/Card'
 import Navigation from '../components/Navigation'
 import { Title, SubTitle, Body } from '../components/textComponents/'
@@ -60,6 +60,22 @@ class HomeScreen extends Component {
     return timestamp / 3600000
   }
 
+  registerNotifications = async () => {
+    const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
+    let finalStatus = status
+    if (status !== 'granted') {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+      finalStatus = status
+    }
+
+    if (finalStatus !== 'granted') {
+      return
+    }
+    console.log('getting token')
+    let token = await Notifications.getExpoPushTokenAsync()
+    console.log(token)
+  }
+
   checkTime = async () => {
     if (firebase) {
       const uid = firebase.auth().currentUser.uid
@@ -90,9 +106,11 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
+    this.checkTime()
     setInterval(() => {
       this.checkTime()
     }, 300000)
+    // this.registerNotifications()
   }
 
   render() {
