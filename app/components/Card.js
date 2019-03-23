@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native'
-import { LinearGradient } from 'expo'
+import { Text, View, StyleSheet, TouchableOpacity, Image, Alert, AsyncStorage } from 'react-native'
+import { LinearGradient, Notifications } from 'expo'
 import { getInstance } from '../services/firebase/firebase'
 
 const styles = StyleSheet.create({
@@ -66,8 +66,34 @@ const getWeek = (day) => {
   return week
 }
 
+const cancelNotification = async() => {
+  try {
+    await Notifications.cancelScheduledNotificationAsync()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const scheduleNotification = async(title, body) => {
+  console.log('scheduling notification')
+  console.log(notifData)
+  const newNotif = await Notifications.scheduleLocalNotificationAsync({
+    body: body,
+    title: title,
+  }, {
+    time: ((new Date()).getTime() + 3600000)
+  })
+  await AsyncStorage.setItem('Notification', newNotif)
+  console.log('notification scheduled')
+}
+
 const addEmotion = async(rating, navigation, route) => {
   if(firebase) {
+    const notifId = await AsyncStorage.getItem('Notification')
+    if(notifId !== null) {
+      console.log('removing old notification')
+      await cancelNotification(notifId)
+    }
     const uid = firebase.auth().currentUser.uid
     const timestamp = new Date()
     const lastActivity = timestamp.getTime()
@@ -79,6 +105,7 @@ const addEmotion = async(rating, navigation, route) => {
       const statref = await db.ref(`/users/${uid}/stats`).once('value')
       const stats = statref.val()
       if(stats.lastAddDay === addDay) {
+        
         const dailyTaps = stats.amountToday += 1
         const total = stats.totalToday += rating
         const average = ((total / dailyTaps) * 2)
@@ -102,6 +129,7 @@ const addEmotion = async(rating, navigation, route) => {
             totalToday: total
           }
         })
+        await scheduleNotification('Reminder', 'Come check in to track your mood')
         navigation(route)
 
       } else {
@@ -129,6 +157,7 @@ const addEmotion = async(rating, navigation, route) => {
             lastAddDay: addDay,
           }
         })
+        await scheduleNotification('Reminder', 'Come check in to track your mood')
         navigation(route)
       }
 
