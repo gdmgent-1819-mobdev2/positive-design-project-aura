@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from "react-native";
 import { LinearGradient } from "expo";
 import Card from "../components/Card";
 import Navigation from "../components/Navigation";
 import {
     Title,
     SubTitle,
-    SecondarySubtitle
+    SecondarySubtitle, Body
 } from "../components/textComponents/";
 import {
     exellentCardGradient,
@@ -90,6 +90,7 @@ class ProfileScreen extends Component {
         darkMode: true,
         notification: true,
         currentUserName: '',
+        userDataLoaded: false
     }
 
     signOutUser = async () => {
@@ -107,84 +108,97 @@ class ProfileScreen extends Component {
 
 
     componentDidMount = () => {
-        this.setUserName()
+        this.setUserName().then(() => {
+            this.setState({ userDataLoaded: true })
+            console.log('ddidmount')
+        })
     }
 
 
 
     setUserName = async () => {
-        this.setState({ currentUserName: await AsyncStorage.getItem('currentUserName') })
+        this.setState({ currentUserName: JSON.parse(await AsyncStorage.getItem('currentUserName')) })
     }
     render() {
-        return (
-            <LinearGradient colors={backGradient} style={styles.container}>
-                <View style={styles.wrapper}>
-                    <View style={styles.logo}>
-                        <Logo />
-                    </View>
-                    <View style={styles.section_wrapper}>
-                        <Title text={"PROFILE"} />
-                        <View style={styles.section_container}>
-                            <SubTitle text={"User Name"} />
-                            <SecondarySubtitle text={"Last session 6 hours ago"} />
+        if (this.state.userDataLoaded === false) {
+            return (
+                <LinearGradient colors={backGradient} style={styles.container}>
+
+                    <Body text={'Loading...'} />
+
+                </LinearGradient>
+            )
+        } else {
+            return (
+                <LinearGradient colors={backGradient} style={styles.container}>
+                    <View style={styles.wrapper}>
+                        <View style={styles.logo}>
+                            <Logo />
                         </View>
-                    </View>
-                    <View style={styles.section_wrapper}>
-                        <Title text={"SETTINGS"} />
-                        <View style={styles.section_container}>
-                            <View style={styles.toggleSwitch}>
-                                <ToggleSwitch
-                                    isOn={this.state.darkMode}
-                                    onColor="#F50097"
-                                    offColor={grey}
-                                    label="Dark mode"
-                                    labelStyle={{
-                                        color: "white",
-                                        fontWeight: "300",
-                                        fontSize: 20,
-                                        paddingRight: "30%",
-                                        width: 180
-                                    }}
-                                    size="medium"
-                                    onToggle={() =>
-                                        this.state.darkMode
-                                            ? this.setState({ darkMode: false })
-                                            : this.setState({ darkMode: true })
-                                    }
-                                />
-                            </View>
-                            <View style={styles.toggleSwitch}>
-                                <ToggleSwitch
-                                    isOn={this.state.notification}
-                                    onColor="#F50097"
-                                    offColor={grey}
-                                    label="Notification"
-                                    labelStyle={{
-                                        color: "white",
-                                        fontWeight: "300",
-                                        fontSize: 20,
-                                        paddingRight: "30%",
-                                        width: 180
-                                    }}
-                                    size="medium"
-                                    onToggle={() =>
-                                        this.state.notification
-                                            ? this.setState({ notification: false })
-                                            : this.setState({ notification: true })
-                                    }
-                                />
+                        <View style={styles.section_wrapper}>
+                            <Title text={"PROFILE"} />
+                            <View style={styles.section_container}>
+                                <SubTitle text={this.state.currentUserName} />
+                                <SecondarySubtitle text={"Last session 6 hours ago"} />
                             </View>
                         </View>
+                        <View style={styles.section_wrapper}>
+                            <Title text={"SETTINGS"} />
+                            <View style={styles.section_container}>
+                                <View style={styles.toggleSwitch}>
+                                    <ToggleSwitch
+                                        isOn={this.state.darkMode}
+                                        onColor="#F50097"
+                                        offColor={grey}
+                                        label="Dark mode"
+                                        labelStyle={{
+                                            color: "white",
+                                            fontWeight: "300",
+                                            fontSize: 20,
+                                            paddingRight: "30%",
+                                            width: 180
+                                        }}
+                                        size="medium"
+                                        onToggle={() =>
+                                            this.state.darkMode
+                                                ? this.setState({ darkMode: false })
+                                                : this.setState({ darkMode: true })
+                                        }
+                                    />
+                                </View>
+                                <View style={styles.toggleSwitch}>
+                                    <ToggleSwitch
+                                        isOn={this.state.notification}
+                                        onColor="#F50097"
+                                        offColor={grey}
+                                        label="Notification"
+                                        labelStyle={{
+                                            color: "white",
+                                            fontWeight: "300",
+                                            fontSize: 20,
+                                            paddingRight: "30%",
+                                            width: 180
+                                        }}
+                                        size="medium"
+                                        onToggle={() =>
+                                            this.state.notification
+                                                ? this.setState({ notification: false })
+                                                : this.setState({ notification: true })
+                                        }
+                                    />
+                                </View>
+                            </View>
+                        </View>
+                        <TouchableOpacity
+                            style={styles.loginBtn}
+                            onPress={() => { this.signOutUser() }}
+                        >
+                            <Text style={styles.btnText}>Sign out</Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.loginBtn}
-                        onPress={() => { this.signOutUser() }}
-                    >
-                        <Text style={styles.btnText}>Sign out</Text>
-                    </TouchableOpacity>
-                </View>
-            </LinearGradient>
-        );
+                </LinearGradient>
+            );
+        }
     }
 }
 
