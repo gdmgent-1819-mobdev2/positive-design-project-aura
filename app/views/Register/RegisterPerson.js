@@ -70,45 +70,50 @@ export class RegisterPerson extends Component {
     const userData = this.props.navigation.getParam('data', null)
     const db = firebase.database()
 
-    if(firebase) {
-      try {
-        let user = await firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
-        const uid = user.user.uid
-        await db.ref(`/users/${uid}`).set({
-          uid: uid,
-          firstName: userDetails.firstName,
-          lastName: userDetails.lastName,
-          email: userData.email,
-          lastSessionInHour: null,
-          sendEmoteAvailable: true,
-          firstEmoteDate: null,
-          notification: true,
-          darkMode: 'on',
-          stats: {
-            amountToday: 0,
-            dailyAverage: {
-              mon: 0,
-              tue: 0,
-              wed: 0,
-              thu: 0,
-              fri: 0,
-              sat: 0,
-              sun: 0,
-            },
-            weeklyAverage: {
-              week1: 0,
-              week2: 0,
-              week3: 0,
-              week4: 0,
-            }
-          }
-        })
-        this.props.navigation.navigate('App')
-      } catch (error) {
-        Alert.alert(error)
-      }
+
+    if (userDetails.firstName == "" || userDetails.lastName == "" ) {
+      Alert.alert("One or more fields are empty, please check all fields!");
     } else {
-      Alert.alert('We are having trouble connecting. Please try again later.')
+      if(firebase) {
+        try {
+          let user = await firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
+          const uid = user.user.uid
+          await db.ref(`/users/${uid}`).set({
+            uid: uid,
+            firstName: userDetails.firstName,
+            lastName: userDetails.lastName,
+            email: userData.email,
+            lastSessionInHour: null,
+            sendEmoteAvailable: true,
+            firstEmoteDate: null,
+            notification: true,
+            darkMode: 'on',
+            stats: {
+              amountToday: 0,
+              dailyAverage: {
+                mon: 0,
+                tue: 0,
+                wed: 0,
+                thu: 0,
+                fri: 0,
+                sat: 0,
+                sun: 0,
+              },
+              weeklyAverage: {
+                week1: 0,
+                week2: 0,
+                week3: 0,
+                week4: 0,
+              }
+            }
+          })
+          this.props.navigation.navigate('App')
+        } catch (error) {
+          Alert.alert(error)
+        }
+      } else {
+        Alert.alert('We are having trouble connecting. Please try again later.')
+      }
     }
   }
 
