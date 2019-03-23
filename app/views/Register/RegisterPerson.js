@@ -70,7 +70,6 @@ export class RegisterPerson extends Component {
     const userData = this.props.navigation.getParam('data', null)
     const db = firebase.database()
 
-
     if (userDetails.firstName == "" || userDetails.lastName == "" ) {
       Alert.alert("One or more fields are empty, please check all fields!");
     } else {
@@ -83,11 +82,12 @@ export class RegisterPerson extends Component {
             firstName: userDetails.firstName,
             lastName: userDetails.lastName,
             email: userData.email,
-            lastSessionInHour: null,
+            lastAddTimestamp: 0,
             sendEmoteAvailable: true,
             firstEmoteDate: null,
-            notification: true,
-            darkMode: 'on',
+            notification: false,
+            darkMode: true,
+
             stats: {
               amountToday: 0,
               dailyAverage: {
@@ -105,14 +105,14 @@ export class RegisterPerson extends Component {
                 week3: 0,
                 week4: 0,
               }
-            }
-          })
-          this.props.navigation.navigate('App')
-        } catch (error) {
-          Alert.alert(error)
+            })
+            this.props.navigation.navigate('App')
+          } catch (error) {
+            Alert.alert(error)
+          }
+        } else {
+          Alert.alert('We are having trouble connecting. Please try again later.')
         }
-      } else {
-        Alert.alert('We are having trouble connecting. Please try again later.')
       }
     }
   }

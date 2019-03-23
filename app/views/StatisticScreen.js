@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
         color: highLight,
         fontSize: 24,
         margin: 5,
+
     },
     text: {
         color: mainTextColor,
@@ -115,18 +116,22 @@ class StatisticScreen extends Component {
         },
         weekly: true,
     }
-    componentDidMount = () => {
+
+    //this happens before render
+    componentWillMount = () => {
         this.loadStatsFromFirebase()
     }
 
     loadStatsFromFirebase = async () => {
         const currentUserId = firebase.auth().currentUser.uid
         const userStats = firebase.database().ref("users/" + currentUserId + "/stats/");
+
         userStats.on("value", async (snapshot) => {
             const averages = snapshot.val()
             await AsyncStorage.setItem('averages', JSON.stringify(averages))
             this.setState({ averages: JSON.parse(await AsyncStorage.getItem('averages')) })
         });
+        
     }
 
     render() {
@@ -152,10 +157,7 @@ class StatisticScreen extends Component {
                             })
                         }} style={this.state.weekly ? styles.options_text : styles.options_text_selected}>Month</Text>
                     </View>
-
-
                     <DaysContainer averages={this.state.averages.dailyAverage} />
-
                 </LinearGradient >
             )
         } else {
