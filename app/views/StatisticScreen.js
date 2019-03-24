@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, AsyncStorage } from 'react-native'
 import { LinearGradient } from 'expo'
-
 import { Title, SubTitle } from '../components/textComponents/'
 import { mainTextColor, highLight } from '../utils/styles'
 import DaysContainer from '../components/statistic/DaysContainer'
@@ -9,9 +8,7 @@ import WeeksContainer from '../components/statistic/WeeksContainer'
 import { backGradient } from '../utils/styles'
 import { getInstance } from '../services/firebase/firebase'
 
-
 const firebase = getInstance()
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -85,7 +82,6 @@ class StatisticScreen extends Component {
             await AsyncStorage.setItem('averages', JSON.stringify(averages))
             this.setState({ averages: JSON.parse(await AsyncStorage.getItem('averages')) })
         });
-
     }
 
     render() {

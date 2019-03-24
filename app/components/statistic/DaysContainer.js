@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView } from 'react-native'
-import { mainTextColor, exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../../utils/styles'
+import { Text, View, StyleSheet } from 'react-native'
+import { mainTextColor } from '../../utils/styles'
 import Day from './Day'
 
-
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
     textContainer: {
         width: '100%',
         marginBottom: 40,
@@ -18,7 +11,6 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         height: 'auto',
-
     },
     days_container: {
         marginTop: 10,
@@ -29,18 +21,6 @@ const styles = StyleSheet.create({
         flexWrap: 'nowrap',
         justifyContent: 'space-between',
         color: 'white',
-    },
-    navContainer: {
-        width: '90%',
-        maxHeight: 70,
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-evenly',
-        backgroundColor: '#2B1576',
-        alignItems: 'center',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
     },
     statisticContainer: {
         maxHeight: '40%',
@@ -53,9 +33,8 @@ const styles = StyleSheet.create({
     },
     text: {
         color: mainTextColor,
-
-    }
-    , wholeWeekcontainer: {
+    },
+    wholeWeekcontainer: {
         marginTop: 100,
         flex: 1,
         width: '100%',
@@ -65,17 +44,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         minHeight: 220,
         maxHeight: 220,
-
-
     }
 });
 
-
-
-
 const DaysContainer = ({ averages }) => (
     <View style={styles.wholeWeekcontainer}>
-
         <View style={styles.statisticContainer}>
             <Day averageEmotion={averages.mon} ></Day>
             <Day averageEmotion={averages.tue}></Day>
@@ -94,9 +67,7 @@ const DaysContainer = ({ averages }) => (
             <Text style={styles.text}>Sat</Text>
             <Text style={styles.text}>Sun</Text>
         </View>
-
     </View>
-
 )
 
 export default DaysContainer

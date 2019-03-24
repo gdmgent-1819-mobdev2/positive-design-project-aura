@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo'
 import {
     exellentCardGradient, okayCardGradient, stressGradient,
@@ -8,7 +8,6 @@ import {
 
 
 const styles = StyleSheet.create({
-
     week: {
         width: 40,
         borderWidth: 1,
@@ -42,7 +41,6 @@ const Week = ({ averageEmotion }) => {
         <LinearGradient style={[{ height: averageEmotion }, styles.week]} colors={gradientColor}>
         </LinearGradient>
     )
-
 }
 
 export default Week

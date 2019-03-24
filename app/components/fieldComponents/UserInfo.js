@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, TextInput, StyleSheet, View } from 'react-native';
+import { TextInput, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   inputField: {
@@ -10,11 +10,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 10,
     marginTop: 10
-  }, view: {
-    width: '100%'
   }
 })
-
 
 const UserInfo = ({ placeholder }) => (
     <TextInput

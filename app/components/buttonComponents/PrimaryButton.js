@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     fontSize: 24,
     fontWeight: '400',
@@ -20,12 +20,10 @@ const style = StyleSheet.create({
   }
 })
 
-
-
 const PrimaryButton = ({text, navigation, route}) => (
 <TouchableOpacity onPress={() => {navigation(route)}}>
-    <View style={style.container}>
-        <Text style={style.text}>{ text }</Text>
+    <View style={styles.container}>
+        <Text style={styles.text}>{ text }</Text>
     </View>
   </TouchableOpacity>
 )

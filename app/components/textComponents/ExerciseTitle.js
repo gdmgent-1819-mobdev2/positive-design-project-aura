@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet } from 'react-native'
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   subtitle: {
     fontSize: 25,
     fontWeight: '600',
@@ -11,7 +11,7 @@ const style = StyleSheet.create({
 })
 
 const ExerciseTitle = ({ text }) => (
-  <Text style={style.subtitle}>{text}</Text>
+  <Text style={styles.subtitle}>{text}</Text>
 )
 
 export default ExerciseTitle
