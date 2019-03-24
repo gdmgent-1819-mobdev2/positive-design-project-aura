@@ -12,7 +12,7 @@ import HomeScreen from '../views/HomeScreen'
 import ProfileScreen from '../views/ProfileScreen'
 import StatisticScreen from '../views/StatisticScreen'
 import LoginScreen from '../views/LoginScreen'
-import RegisterScreen from '../views/RegisterScreen'
+// import RegisterScreen from '../views/RegisterScreen'
 import TaskDetail from '../views/TaskDetail'
 import {
   Ionicons
