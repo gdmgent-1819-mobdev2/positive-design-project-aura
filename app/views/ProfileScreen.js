@@ -166,11 +166,16 @@ class ProfileScreen extends Component {
                 const currentTimestampHours = this.getHoursFromDate(now.getTime())
                 const lastTimeStampHours = this.getHoursFromDate(lastTimestamp.val())
                 const lastSessionHours = currentTimestampHours - lastTimeStampHours
-                if (lastSessionHours >= 0) {
-                    this.setState({ lastSession: parseInt(lastSessionHours, 10) })
-                    console.log('More= than 0');
-                } else if (lastSessionHours < 0) {
-                    console.log('less than 0');
+
+                if (lastTimestamp === 0) {
+                    if (lastSessionHours >= 0) {
+                        this.setState({ lastSession: parseInt(lastSessionHours, 10) })
+                        console.log('More= than 0');
+                    } else if (lastSessionHours < 0) {
+                        console.log('less than 0');
+                        this.setState({ lastSession: 0 })
+                    }
+                } else {
                     this.setState({ lastSession: 0 })
                 }
 
@@ -204,7 +209,7 @@ class ProfileScreen extends Component {
                             <View style={styles.toggleSwitch}>
                                 <ToggleSwitch
                                     isOn={this.state.darkMode}
-                                    onColor= {highLight}
+                                    onColor={highLight}
                                     offColor={grey}
                                     label="Dark mode"
                                     labelStyle={{
