@@ -7,7 +7,7 @@ import {
     SecondarySubtitle
 } from "../components/textComponents/";
 import { Logo } from "../components/textComponents/";
-import { midPurple, backGradient, grey } from "../utils/styles/";
+import { midPurple, backGradient, grey, highLight, mainTextColor } from "../utils/styles/";
 import { getInstance } from "../services/firebase/firebase";
 
 const firebase = getInstance();
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     loginBtn: {
         fontSize: 24,
         fontWeight: "400",
-        backgroundColor: "#F50097",
+        backgroundColor: highLight,
         minWidth: 180,
         paddingTop: 12,
         paddingBottom: 12,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     btnText: {
         fontSize: 18,
         fontWeight: "400",
-        color: "#ffffff",
+        color: mainTextColor,
         textAlign: "center"
     },
     logo: {
@@ -95,7 +95,7 @@ class ProfileScreen extends Component {
     }
 
     /**
-     * Logs out the current user
+     * Logs out the current user and clears AsyncStorage
      */
     signOutUser = async () => {
         try {
@@ -111,27 +111,9 @@ class ProfileScreen extends Component {
     };
 
     /**
-     * ?Again?
-     */
-    signOutUser = async () => {
-        try {
-            await firebase
-                .auth()
-                .signOut()
-                .then(() => {
-                    this.props.navigation.navigate("Login");
-                    console.log("Navigate succesful");
-                });
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    /**
      * Toggle the users desire to receive notifications
      */
     toggleNotification = async () => {
-
         try {
             const currentUserId = firebase.auth().currentUser.uid;
             const ref = firebase
@@ -157,18 +139,16 @@ class ProfileScreen extends Component {
     };
 
     componentWillMount = () => {
-        this.setUserName()
+        this.getUserName()
         this.getLastSession()
     }
 
 
 
-    setUserName = async () => {
-
+    getUserName = async () => {
         await AsyncStorage.getItem('currentUserName').then((userName) => {
             this.setState({ currentUserName: JSON.parse(userName) })
         })
-
     }
 
     /**
@@ -224,7 +204,7 @@ class ProfileScreen extends Component {
                             <View style={styles.toggleSwitch}>
                                 <ToggleSwitch
                                     isOn={this.state.darkMode}
-                                    onColor="#F50097"
+                                    onColor= {highLight}
                                     offColor={grey}
                                     label="Dark mode"
                                     labelStyle={{
@@ -245,7 +225,7 @@ class ProfileScreen extends Component {
                             <View style={styles.toggleSwitch}>
                                 <ToggleSwitch
                                     isOn={this.state.notification}
-                                    onColor="#F50097"
+                                    onColor={highLight}
                                     offColor={grey}
                                     label="Notification"
                                     labelStyle={{

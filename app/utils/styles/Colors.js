@@ -25,22 +25,3 @@ export const anxiousBarGradient = ['#FF7600', '#FF0000']
 export const mainTextColor = '#FFFFFF'
 export const highLight = '#F50097'
 export const grey = '#D0CFD2'
-
-
-
-// componentDidMount = () => {
-//     this.setUserName().then(() => {
-//         this.setState({ userDataLoaded: true })
-//         console.log('ddidmount')
-//     })
-
-// componentDidMount = () => {
-//     this.setUserName().then(() => {
-//         this.setState({ userDataLoaded: true })
-//         console.log('ddidmount')
-//     })
-// }
-
-// setUserName = async () => {
-//     this.setState({ currentUserName: JSON.parse(await AsyncStorage.getItem('currentUserName')) })
-// }

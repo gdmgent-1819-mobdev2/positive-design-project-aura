@@ -4,6 +4,8 @@ import { SecondaryButton } from "../components/buttonComponents/"
 import { SecondarySubtitle } from "../components/textComponents/"
 import { Logo } from "../components/textComponents/"
 import { getInstance } from '../services/firebase/firebase'
+import { midPurple, backGradient, grey, highLight, mainTextColor } from "../utils/styles/";
+
 const firebase = getInstance()
 
 const styles = StyleSheet.create({
@@ -21,16 +23,13 @@ const styles = StyleSheet.create({
     height: "30%",
     alignItems: 'center'
   },
-  userInfo: {
-    marginTop: 50
-  },
   center: {
     textAlign: "center"
   },
   loginBtn: {
     fontSize: 24,
     fontWeight: '400',
-    backgroundColor: '#F50097',
+    backgroundColor: highLight,
     minWidth: 180,
     paddingTop: 12,
     paddingBottom: 12,
@@ -40,11 +39,11 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     fontWeight: '400',
-    color: '#ffffff',
+    color: mainTextColor,
     textAlign: 'center',
   },
   inputField: {
-    backgroundColor: '#ffffff',
+    backgroundColor: mainTextColor,
     opacity: 0.9,
     height: 40,
     width: '100%',
@@ -67,7 +66,7 @@ class LoginScreen extends Component {
   }
 
   /**
-   * Logs in a user
+   * Logs in a user and set currentUserName in AsyncStorage
    */
   loginUser = async () => {
     await AsyncStorage.setItem('isLoggedIn', 'true')
