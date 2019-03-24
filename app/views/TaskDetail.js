@@ -25,15 +25,6 @@ const styles = StyleSheet.create({
   buttons: {
     marginBottom: '2%'
   },
-  taskContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  sadImage: {
-    width: 100,
-    height: 100,
-  }
 });
 
 
@@ -44,7 +35,7 @@ class TaskDetail extends Component {
   render() {
     const { navigation } = this.props
     const type = navigation.getParam('type', 'no Type')
-    if(type !== 'chatbot') {
+    if (type !== 'chatbot') {
       title = 'Here is an exercise to get you started.'
       buttons = (
         <View style={styles.buttons}>
