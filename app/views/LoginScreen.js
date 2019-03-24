@@ -4,7 +4,6 @@ import { SecondaryButton } from "../components/buttonComponents/"
 import { SecondarySubtitle } from "../components/textComponents/"
 import { Logo } from "../components/textComponents/"
 import { getInstance } from '../services/firebase/firebase'
-import { UserProvider } from '../context/userContext'
 const firebase = getInstance()
 
 const styles = StyleSheet.create({
@@ -67,6 +66,9 @@ class LoginScreen extends Component {
     }
   }
 
+  /**
+   * Logs in a user
+   */
   loginUser = async () => {
     await AsyncStorage.setItem('isLoggedIn', 'true')
     const user = {
@@ -87,13 +89,6 @@ class LoginScreen extends Component {
       .catch(error => {
         Alert.alert(error.code + ': ' + error.message)
       })
-
-
-
-
-
-    //console.log(currentUserName)
-
   }
 
   render() {

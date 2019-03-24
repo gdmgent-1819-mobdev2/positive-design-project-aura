@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   taskcard: {
     width: '100%',
     height: '100%',
-    //backgroundColor: '#48efbe',
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",

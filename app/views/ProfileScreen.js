@@ -1,24 +1,13 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from "react-native";
 import { LinearGradient } from "expo";
-import Card from "../components/Card";
-import Navigation from "../components/Navigation";
 import {
     Title,
     SubTitle,
-    SecondarySubtitle, Body
+    SecondarySubtitle
 } from "../components/textComponents/";
-import {
-    exellentCardGradient,
-    okayCardGradient,
-    stressGradient,
-    anxiousGradient,
-    exhaustedGradient,
-    negativeGrey
-} from "../utils/styles";
 import { Logo } from "../components/textComponents/";
-import { PrimaryButton } from "../components/buttonComponents/";
-import { darkPurple, midPurple, backGradient, grey } from "../utils/styles/";
+import { midPurple, backGradient, grey } from "../utils/styles/";
 import { getInstance } from "../services/firebase/firebase";
 
 const firebase = getInstance();
@@ -98,10 +87,16 @@ class ProfileScreen extends Component {
         }
     }
 
+    /**
+     * Convert timestamp to hours
+     */
     getHoursFromDate = (timestamp) => {
         return timestamp / 3600000
     }
 
+    /**
+     * Logs out the current user
+     */
     signOutUser = async () => {
         try {
             await firebase.auth().signOut()
@@ -115,7 +110,9 @@ class ProfileScreen extends Component {
         }
     };
 
-
+    /**
+     * ?Again?
+     */
     signOutUser = async () => {
         try {
             await firebase
@@ -130,7 +127,9 @@ class ProfileScreen extends Component {
         }
     };
 
-
+    /**
+     * Toggle the users desire to receive notifications
+     */
     toggleNotification = async () => {
 
         try {
@@ -172,7 +171,9 @@ class ProfileScreen extends Component {
 
     }
 
-
+    /**
+     * Get the last session time from the db
+     */
     getLastSession = async () => {
 
         try {

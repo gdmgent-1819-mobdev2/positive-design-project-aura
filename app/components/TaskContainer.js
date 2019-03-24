@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Text, View, ScrollView, StyleSheet } from 'react-native'
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
 import TaskCard from './TaskCard'
-import { highLight, mainTextColor, stressGradient, anxiousGradient, okayCardGradient, exellentCardGradient } from '../utils/styles'
+import { stressGradient, anxiousGradient, okayCardGradient, exellentCardGradient } from '../utils/styles'
 
 const styles = StyleSheet.create({
     container: {

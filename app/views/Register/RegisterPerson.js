@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native'
-import { SubTitle, SecondarySubtitle, Logo, Body } from '../../components/textComponents';
+import { SecondarySubtitle, Logo } from '../../components/textComponents';
 import { SecondaryButton } from '../../components/buttonComponents';
 import { getInstance } from '../../services/firebase/firebase'
 
@@ -62,6 +62,9 @@ export class RegisterPerson extends Component {
     }
   }
 
+  /**
+   * Registers a user and puts his data into db
+   */
   addUserDetails = async() => {
     const userDetails = {
       firstName: this.state.firstName,

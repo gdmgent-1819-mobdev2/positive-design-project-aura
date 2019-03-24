@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ScrollView, AsyncStorage } from 'react-native'
+import { View, StyleSheet, ScrollView, AsyncStorage } from 'react-native'
 import { LinearGradient, Permissions, Notifications } from 'expo'
 import Card from '../components/Card'
-import Navigation from '../components/Navigation'
 import { Title, SubTitle, Body } from '../components/textComponents/'
 import { exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
 import { getInstance } from '../services/firebase/firebase'
 import { PrimaryButton } from '../components/buttonComponents'
-
 import { backGradient } from '../utils/styles'
 
+/**
+ * All styles for the HomeScreen
+ */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -45,6 +46,9 @@ const styles = StyleSheet.create({
   },
 });
 
+/**
+ * Init firebase and db
+ */
 const firebase = getInstance()
 const db = firebase.database()
 
@@ -59,10 +63,16 @@ class HomeScreen extends Component {
     }
   }
 
+  /**
+   * Convert timestamp to hours
+   */
   getHoursFromDate = (timestamp) => {
     return timestamp / 3600000
   }
 
+  /**
+   * Register the current user for notifications
+   */
   registerNotifications = async () => {
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
     let finalStatus = status
@@ -89,6 +99,9 @@ class HomeScreen extends Component {
 
   }
 
+  /**
+   * check if timeout time has passed yet
+   */
   checkTime = async () => {
     if (firebase && firebase.auth().currentUser) {
       const uid = firebase.auth().currentUser.uid
@@ -151,7 +164,9 @@ class HomeScreen extends Component {
     this.setUserName()
 
   }
-
+  /**
+   * Initialize current users username
+   */
   setUserName = async () => {
 
     await AsyncStorage.getItem('currentUserName').then((userName) => {
@@ -161,6 +176,9 @@ class HomeScreen extends Component {
 
   }
 
+  /**
+   * Render the component depending on state
+   */
   render() {
     if (this.state.loading === true) {
       return (
