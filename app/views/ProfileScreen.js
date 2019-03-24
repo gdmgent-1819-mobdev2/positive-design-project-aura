@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from "react-native";
-import { LinearGradient } from "expo";
+import React, { Component } from "react"
+import { Text, View, StyleSheet, TouchableOpacity, AsyncStorage } from "react-native"
+import { LinearGradient } from "expo"
 import {
     Title,
     SubTitle,
     SecondarySubtitle
-} from "../components/textComponents/";
-import { Logo } from "../components/textComponents/";
-import { midPurple, backGradient, grey, highLight, mainTextColor } from "../utils/styles/";
-import { getInstance } from "../services/firebase/firebase";
+} from "../components/textComponents/"
+import { Logo } from "../components/textComponents/"
+import { midPurple, backGradient, grey, highLight, mainTextColor } from "../utils/styles/"
+import { getInstance } from "../services/firebase/firebase"
 
-const firebase = getInstance();
+const firebase = getInstance()
 
-import ToggleSwitch from "toggle-switch-react-native";
+import ToggleSwitch from "toggle-switch-react-native"
 
 const styles = StyleSheet.create({
     container: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         marginBottom: 7,
         justifyContent: "center"
     }
-});
+})
 
 class ProfileScreen extends Component {
 
@@ -106,41 +106,77 @@ class ProfileScreen extends Component {
                     AsyncStorage.clear()
                 })
         } catch (e) {
-            console.log(e);
+            console.log(e)
         }
-    };
+    }
 
     /**
      * Toggle the users desire to receive notifications
      */
     toggleNotification = async () => {
         try {
-            const currentUserId = firebase.auth().currentUser.uid;
+            const currentUserId = firebase.auth().currentUser.uid
             const ref = firebase
                 .database()
-                .ref("users/" + currentUserId + "/notification");
+                .ref("users/" + currentUserId + "/notification")
 
-            const snapshot = await ref.once("value");
+            const snapshot = await ref.once("value")
             if (snapshot) {
-                this.setState({ notification: false });
-                console.log(this.state.notification);
-                ref.set(false);
+                this.setState({ notification: false })
+                console.log(this.state.notification)
+                ref.set(false)
                 console.log(snapshot)
             } else {
-                this.setState({ notification: true });
-                console.log(this.state.notification);
-                ref.set(true);
+                this.setState({ notification: true })
+                console.log(this.state.notification)
+                ref.set(true)
             }
         } catch (e) {
-            console.log(e);
+            console.log(e)
         }
 
 
-    };
+    }
 
+    userSetting = async () => {
+        try {
+            const currentUserId = firebase.auth().currentUser.uid
+            const refNotification = firebase
+                .database()
+                .ref("users/" + currentUserId + "/notification")
+            const refDarkMode = firebase
+                .database()
+                .ref("users/" + currentUserId + "/darkMode")
+
+            refNotification.on("value", async (snapshot) => {
+                if (snapshot === "true") {
+                    this.setState({ notification: true })
+
+                } else {
+                    this.setState({ notification: false })
+
+                }
+            });
+
+            refDarkMode.on("value", async (snapshot) => {
+                if (snapshot === "true") {
+                    this.setState({ darkMode: true })
+                    console.log(snapshot)
+                } else {
+                    this.setState({ darkMode: false })
+                    console.log(snapshot)
+                }
+            });
+
+        } catch (e) {
+            Alert.alert(e.code + ': ' + e.message)
+        }
+
+    }
     componentWillMount = () => {
         this.getUserName()
         this.getLastSession()
+        this.userSetting()
     }
 
 
@@ -157,8 +193,8 @@ class ProfileScreen extends Component {
     getLastSession = async () => {
 
         try {
-            const currentUserId = firebase.auth().currentUser.uid;
-            const ref = firebase.database().ref("users/" + currentUserId + "/lastAddTimestamp");
+            const currentUserId = firebase.auth().currentUser.uid
+            const ref = firebase.database().ref("users/" + currentUserId + "/lastAddTimestamp")
 
 
             ref.on("value", async (lastTimestamp) => {
@@ -170,20 +206,20 @@ class ProfileScreen extends Component {
                 if (lastTimestamp === 0) {
                     if (lastSessionHours >= 0) {
                         this.setState({ lastSession: parseInt(lastSessionHours, 10) })
-                        console.log('More= than 0');
+                        console.log('More= than 0')
                     } else if (lastSessionHours < 0) {
-                        console.log('less than 0');
+                        console.log('less than 0')
                         this.setState({ lastSession: 0 })
                     }
                 } else {
                     this.setState({ lastSession: 0 })
                 }
 
-            });
+            })
 
 
         } catch (e) {
-            console.log(e);
+            console.log(e)
         }
 
     }
@@ -242,7 +278,7 @@ class ProfileScreen extends Component {
                                     }}
                                     size="medium"
                                     onToggle={() => {
-                                        this.toggleNotification();
+                                        this.toggleNotification()
                                     }}
                                 />
                             </View>
@@ -251,15 +287,15 @@ class ProfileScreen extends Component {
                     <TouchableOpacity
                         style={styles.loginBtn}
                         onPress={() => {
-                            this.signOutUser();
+                            this.signOutUser()
                         }}
                     >
                         <Text style={styles.btnText}>Sign out</Text>
                     </TouchableOpacity>
                 </View>
             </LinearGradient>
-        );
+        )
     }
 }
 
-export default ProfileScreen;
+export default ProfileScreen
