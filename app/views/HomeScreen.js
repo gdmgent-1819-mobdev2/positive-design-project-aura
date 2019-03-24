@@ -122,17 +122,18 @@ class HomeScreen extends Component {
         hours %= 24;
         minutes %= 60;
         seconds %= 60;
-
+      
         this.setState({
           loading: false,
           allowEmotion: false,
           emoteTimer: ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2),
         })
         // Function will only be called again if the hour has not passed yet and a user is logged in
-        if(firebase.auth().currentUser) {
+        if (firebase.auth().currentUser) {
+
           setTimeout(() => {
             this.checkTime()
-          }, 2000)
+          }, 1000)
         }
       } else {
         this.setState({
@@ -140,13 +141,15 @@ class HomeScreen extends Component {
           allowEmotion: true,
         })
       }
-
-    } else {
-      this.setState({
-        loading: false,
-        allowEmotion: false,
-      })
     }
+    // } else {
+    //   if (this.mounted) {
+    //     this.setState({
+    //       loading: false,
+    //       allowEmotion: false,
+    //     })
+    //   }
+    // }
   }
 
 
@@ -154,15 +157,17 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.checkTime()
     this.registerNotifications()
+    // removed, in checkTime zelf is er interval
+    // if (this.mounted) {
+    //   setInterval(() => {
+    //     this.checkTime()
+    //   }, 1000)
+    // }
 
-    setInterval(() => {
-      this.checkTime()
-    }, 1000)
   }
 
   componentWillMount = () => {
     this.setUserName()
-
   }
   /**
    * Initialize current users username
