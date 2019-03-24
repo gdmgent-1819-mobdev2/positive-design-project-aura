@@ -91,7 +91,7 @@ export class RegisterPerson extends Component {
             sendEmoteAvailable: true,
             firstEmoteDate: null,
             notification: true,
-            darkMode: 'on',
+            darkMode: true,
             stats: {
               amountToday: 0,
               dailyAverage: {
@@ -114,7 +114,6 @@ export class RegisterPerson extends Component {
 
           await AsyncStorage.setItem('currentUserName', JSON.stringify(userDetails.firstName)).then(() => {
             this.props.navigation.navigate('App')
-
           })
         } catch (error) {
           Alert.alert(error)

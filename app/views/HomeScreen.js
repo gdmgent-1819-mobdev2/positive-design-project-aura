@@ -116,8 +116,11 @@ class HomeScreen extends Component {
           allowEmotion: false,
           emoteTimer: ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2),
         })
+
         // Function will only be called again if the hour has not passed yet and a user is logged in
         if (firebase.auth().currentUser) {
+
+
 
           setTimeout(() => {
             this.checkTime()
