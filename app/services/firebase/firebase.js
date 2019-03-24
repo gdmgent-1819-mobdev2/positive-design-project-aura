@@ -17,6 +17,7 @@ const initFirebase = () => {
   instance = firebaseInstance.initializeApp(config);
 };
 
+//singleton pattern, always one ini
 const getInstance = () => {
   if (!instance) {
     initFirebase();
