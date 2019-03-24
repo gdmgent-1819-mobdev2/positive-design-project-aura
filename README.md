@@ -20,6 +20,8 @@ than a few taps on their screen. They have access to different exercises and can
 * Firebase
 * toggle-switch-react-native
 
+## Functions & Designs
+* https://trello.com/b/rjJ1DExb/project-aura
 ## Installation
 
 * `npm install`
