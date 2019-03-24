@@ -25,18 +25,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     height: 'auto',
   },
-  navContainer: {
-    width: '90%',
-    maxHeight: 70,
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-evenly',
-    backgroundColor: '#2B1576',
-    alignItems: 'center',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
   cardContainer: {
     maxHeight: '70%',
     flex: 1,
@@ -122,7 +110,7 @@ class HomeScreen extends Component {
         hours %= 24;
         minutes %= 60;
         seconds %= 60;
-      
+
         this.setState({
           loading: false,
           allowEmotion: false,
@@ -167,12 +155,12 @@ class HomeScreen extends Component {
   }
 
   componentWillMount = () => {
-    this.setUserName()
+    this.getUserName()
   }
   /**
    * Initialize current users username
    */
-  setUserName = async () => {
+  getUserName = async () => {
 
     await AsyncStorage.getItem('currentUserName').then((userName) => {
       this.setState({ currentUserName: JSON.parse(userName) })
@@ -200,6 +188,7 @@ class HomeScreen extends Component {
       )
     } else {
       if (this.state.allowEmotion === false) {
+        {/* only shows when user already use emotion check  */ }
         return (
           <LinearGradient colors={backGradient} style={styles.container}>
             <View style={styles.textContainer}>
@@ -223,6 +212,8 @@ class HomeScreen extends Component {
 
             </View>
             <View style={styles.cardContainer}>
+
+              {/* horizontal scroll bar emotion card  */}
               <ScrollView horizontal={true}>
                 <Card text={'Excellent'} value={100} route={'Details'} navigation={this.props.navigation.navigate} colorBase={exellentCardGradient} image={require("../assets/icons/card-emotes/excellent.png")} />
                 <Card text={'Okay'} value={75} route={'Details'} navigation={this.props.navigation.navigate} colorBase={okayCardGradient} image={require("../assets/icons/card-emotes/okay.png")} />

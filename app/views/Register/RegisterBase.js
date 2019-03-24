@@ -11,8 +11,8 @@ import {
   SecondarySubtitle,
   Logo,
 } from "../../components/textComponents";
+import { highLight, mainTextColor } from "../../utils/styles/";
 import { SecondaryButton } from "../../components/buttonComponents";
-import { getInstance } from "../../services/firebase/firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,14 +24,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "#2B1576"
   },
-  horizontalButtons: {
-    width: "100%",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
   inputField: {
-    backgroundColor: "#ffffff",
+    backgroundColor: mainTextColor,
     opacity: 0.9,
     height: 40,
     width: "100%",
@@ -45,7 +39,7 @@ const styles = StyleSheet.create({
   primaryBtn: {
     fontSize: 24,
     fontWeight: "400",
-    backgroundColor: "#F50097",
+    backgroundColor: highLight,
     minWidth: 180,
     paddingTop: 12,
     paddingBottom: 12,
@@ -79,7 +73,9 @@ export class RegisterBase extends Component {
       password: this.state.password,
       pass2: this.state.pass2
     };
-
+    /**
+     * TextField validation
+     */
     if (userdata.email != "") {
       if (userdata.password == "" || userdata.pass2 == "") {
         Alert.alert("One or more fields are empty, please check all fields!");

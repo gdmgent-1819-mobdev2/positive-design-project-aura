@@ -23,18 +23,6 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     height: 'auto',
   },
-  navContainer: {
-    width: '90%',
-    maxHeight: 70,
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-evenly',
-    backgroundColor: '#2B1576',
-    alignItems: 'center',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  },
   taskContainer: {
     maxWidth: '80%',
     flex: 1,

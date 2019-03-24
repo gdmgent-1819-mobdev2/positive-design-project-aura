@@ -9,17 +9,6 @@ import { backGradient } from '../utils/styles'
 import { getInstance } from '../services/firebase/firebase'
 
 const firebase = getInstance()
-
-/*TODO: 
--Get day and weekly average from firebase, if not given = 1
-
-**DATA STRUCTURE
--Click on Emote
-    ->get today's date
-        ->get today's average value
-        ->if empty, insert today's day
-
-*/
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -34,37 +23,6 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         height: 'auto',
 
-    },
-    days_container: {
-        marginTop: 10,
-        width: '70%',
-        height: 'auto',
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-between',
-        color: 'white',
-    },
-    navContainer: {
-        width: '90%',
-        maxHeight: 70,
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'space-evenly',
-        backgroundColor: '#2B1576',
-        alignItems: 'center',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-    },
-    statisticContainer: {
-        maxHeight: '40%',
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        alignItems: 'flex-end',
-        justifyContent: 'space-between',
-        width: '70%',
     },
     options: {
         width: '100%',
@@ -84,9 +42,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         margin: 5,
 
-    },
-    text: {
-        color: mainTextColor,
     }
 });
 
