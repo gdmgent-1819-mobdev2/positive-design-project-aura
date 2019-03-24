@@ -80,10 +80,19 @@ class LoginScreen extends Component {
         const currentUser = firebase.database().ref("users/" + firebase.auth().currentUser.uid);
         currentUser.on("value", async (snapshot) => {
           const currentUserName = snapshot.val().firstName
-          await AsyncStorage.setItem('currentUserName', JSON.stringify(currentUserName))
+          await AsyncStorage.setItem('currentUserName', JSON.stringify(currentUserName)).then(() => {
+            this.props.navigation.navigate('App')
+
+          })
           console.log(JSON.parse(await AsyncStorage.getItem('currentUserName')))
         });
-        this.props.navigation.navigate('App')
+
+        // let currentUserName = AsyncStorage.getItem('currentUserName');
+        // if (currentUserName != null) {
+
+        // }
+
+
       })
       .catch(error => {
         Alert.alert(error.code + ': ' + error.message)
