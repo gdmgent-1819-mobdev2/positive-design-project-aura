@@ -90,8 +90,8 @@ export class RegisterPerson extends Component {
             lastSessionInHour: null,
             sendEmoteAvailable: true,
             firstEmoteDate: null,
-            notification: true,
-            darkMode: true,
+            notification: { notification: true },
+            darkMode: { darkMode: true },
             stats: {
               amountToday: 0,
               dailyAverage: {
