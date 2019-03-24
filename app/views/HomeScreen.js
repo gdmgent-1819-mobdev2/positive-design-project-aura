@@ -145,12 +145,12 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.checkTime()
     this.registerNotifications()
-    // removed, in checkTime zelf is er interval
-    // if (this.mounted) {
-    //   setInterval(() => {
-    //     this.checkTime()
-    //   }, 1000)
-    // }
+    //removed, in checkTime zelf is er interval
+
+    setInterval(() => {
+      this.checkTime()
+    }, 1000)
+
 
   }
 

@@ -86,13 +86,6 @@ class LoginScreen extends Component {
           })
           console.log(JSON.parse(await AsyncStorage.getItem('currentUserName')))
         });
-
-        // let currentUserName = AsyncStorage.getItem('currentUserName');
-        // if (currentUserName != null) {
-
-        // }
-
-
       })
       .catch(error => {
         Alert.alert(error.code + ': ' + error.message)
@@ -135,7 +128,6 @@ class LoginScreen extends Component {
 
     );
   }
-
 }
 
 export default LoginScreen;
