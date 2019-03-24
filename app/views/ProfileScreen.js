@@ -116,27 +116,47 @@ class ProfileScreen extends Component {
     toggleNotification = async () => {
         try {
             const currentUserId = firebase.auth().currentUser.uid
-            const ref = firebase
+            const refNotification = firebase
                 .database()
                 .ref("users/" + currentUserId + "/notification")
 
-            const snapshot = await ref.once("value")
-            if (snapshot) {
-                this.setState({ notification: false })
-                console.log(this.state.notification)
-                ref.set(false)
-                console.log(snapshot)
+            console.log(this.state.notification)
+            if (this.state.notification) {
+                refNotification.set({ notification: false })
+                this.userSetting()
             } else {
-                this.setState({ notification: true })
-                console.log(this.state.notification)
-                ref.set(true)
+                refNotification.set({ notification: true })
+                this.userSetting()
             }
         } catch (e) {
-            console.log(e)
+            Alert.alert(e.code + ': ' + e.message)
         }
-
-
     }
+
+
+    toggleDarkMode = async () => {
+        try {
+            const currentUserId = firebase.auth().currentUser.uid
+
+            const refDarkMode = firebase
+                .database()
+                .ref("users/" + currentUserId + "/darkMode")
+
+            if (this.state.darkMode) {
+                refDarkMode.set({ darkMode: false })
+                this.userSetting()
+            } else {
+                refDarkMode.set({ darkMode: true })
+                this.userSetting()
+            }
+
+        } catch (e) {
+            Alert.alert(e.code + ': ' + e.message)
+        }
+    }
+
+
+
 
     userSetting = async () => {
         try {
@@ -149,22 +169,22 @@ class ProfileScreen extends Component {
                 .ref("users/" + currentUserId + "/darkMode")
 
             refNotification.on("value", async (snapshot) => {
-                if (snapshot === "true") {
+                if (snapshot.val().notification) {
                     this.setState({ notification: true })
-
                 } else {
                     this.setState({ notification: false })
+
+
 
                 }
             });
 
             refDarkMode.on("value", async (snapshot) => {
-                if (snapshot === "true") {
+                if (snapshot.val().darkMode) {
                     this.setState({ darkMode: true })
-                    console.log(snapshot)
                 } else {
                     this.setState({ darkMode: false })
-                    console.log(snapshot)
+
                 }
             });
 
@@ -256,10 +276,7 @@ class ProfileScreen extends Component {
                                         width: 180
                                     }}
                                     size="medium"
-                                    onToggle={() =>
-                                        this.state.darkMode
-                                            ? this.setState({ darkMode: false })
-                                            : this.setState({ darkMode: true })
+                                    onToggle={() => { this.toggleDarkMode() }
                                     }
                                 />
                             </View>
@@ -277,9 +294,7 @@ class ProfileScreen extends Component {
                                         width: 180
                                     }}
                                     size="medium"
-                                    onToggle={() => {
-                                        this.toggleNotification()
-                                    }}
+                                    onToggle={() => { this.toggleNotification() }}
                                 />
                             </View>
                         </View>
