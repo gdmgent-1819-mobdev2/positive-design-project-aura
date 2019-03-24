@@ -5,7 +5,6 @@ import { stressGradient, anxiousGradient, okayCardGradient, exellentCardGradient
 
 const styles = StyleSheet.create({
     container: {
-
         maxWidth: '100%',
         maxHeight: 290,
         flex: 1,
@@ -13,11 +12,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
         justifyContent: 'space-between',
-
         flexWrap: 'wrap',
-    },
-    task__excercise: {
-
     }
 })
 

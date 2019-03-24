@@ -53,5 +53,5 @@ export const getTabBarIcon = (navigation, focused, tintColor) => {
     }
 
     // You can return any component that you like here!
-    return <IconComponent name={iconName} size={35} color={tintColor} />;
+    return <IconComponent name={iconName} size={35} color={tintColor} size={25}/>;
 };

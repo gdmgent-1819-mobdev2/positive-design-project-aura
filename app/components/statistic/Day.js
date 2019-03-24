@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo";
 import {
     anxiousBarGradient,
@@ -19,10 +19,6 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 20,
         borderColor: "transparent"
     },
-    text: {
-        position: "absolute",
-        bottom: -70
-    }
 });
 
 /**
