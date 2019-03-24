@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, Image, Alert, AsyncStorage } from 'react-native'
 import { LinearGradient, Notifications } from 'expo'
 import { getInstance } from '../services/firebase/firebase'
@@ -48,10 +48,17 @@ const styles = StyleSheet.create({
   }
 })
 
+/**
+ * Init firebase and some default value arrays
+ */
 const firebase = getInstance()
 const weekDays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 const weeks = ['week1', 'week2', 'week3', 'week4']
 
+/**
+ * get the current week of the month from day
+ * @param {Number} day 
+ */
 const getWeek = (day) => {
   let week = '';
   if(day > 21) {
@@ -66,6 +73,9 @@ const getWeek = (day) => {
   return week
 }
 
+/**
+ * Cancel the scheduled notification
+ */
 const cancelNotification = async() => {
   try {
     await Notifications.cancelScheduledNotificationAsync()
@@ -74,6 +84,10 @@ const cancelNotification = async() => {
   }
 }
 
+/**
+ * Schedule a notification for when people can track their mood again
+ * !May or may not work properly on Android (Notifications work, but error screen appeared during dev)
+ */
 const scheduleNotification = async() => {
   console.log('scheduling notification')
   const newNotif = await Notifications.scheduleLocalNotificationAsync({
@@ -86,6 +100,12 @@ const scheduleNotification = async() => {
   console.log('notification scheduled')
 }
 
+/**
+ * Select and add an emotion to the database
+ * @param {Number} rating The value of the emotion
+ * @param {*} navigation React Navigations navigate function
+ * @param {*} route Route to navigate to
+ */
 const addEmotion = async(rating, navigation, route) => {
   if(firebase) {
     const notifId = await AsyncStorage.getItem('Notification')

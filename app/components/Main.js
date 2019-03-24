@@ -13,6 +13,10 @@ export class Main extends Component {
   state = {
     fontLoaded: false,
   }
+
+  /**
+   * Load custom fonts into the app
+   */
   async componentDidMount() {
     //load fonts
     await Expo.Font.loadAsync({

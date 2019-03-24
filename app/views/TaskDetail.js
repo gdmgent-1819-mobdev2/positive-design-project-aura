@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { LinearGradient } from 'expo'
-import { SubTitle, Body } from '../components/textComponents/'
+import { SubTitle } from '../components/textComponents/'
 import { ArrowButton, SecondaryButton, PrimaryButton } from '../components/buttonComponents/'
 import ExerciseDetail from '../components/ExerciseDetail'
 
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
 
 
 class TaskDetail extends Component {
+  /**
+   * Render the task according to type
+   */
   render() {
     const { navigation } = this.props
     const type = navigation.getParam('type', 'no Type')

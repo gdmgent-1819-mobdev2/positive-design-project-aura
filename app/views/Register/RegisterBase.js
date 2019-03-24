@@ -8,10 +8,8 @@ import {
   Alert
 } from "react-native";
 import {
-  SubTitle,
   SecondarySubtitle,
   Logo,
-  Body
 } from "../../components/textComponents";
 import { SecondaryButton } from "../../components/buttonComponents";
 import { getInstance } from "../../services/firebase/firebase";
@@ -62,8 +60,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const firebase = getInstance();
-
 export class RegisterBase extends Component {
   constructor(props) {
     super(props);
@@ -74,6 +70,9 @@ export class RegisterBase extends Component {
     };
   }
 
+  /**
+   * Gathers user data from fields and sends it to the next view
+   */
   createUser = () => {
     const userdata = {
       email: this.state.email,
