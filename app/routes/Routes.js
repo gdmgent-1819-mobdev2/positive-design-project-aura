@@ -1,6 +1,3 @@
-import React, {
-  Component
-} from 'react'
 import {
   createSwitchNavigator,
   createStackNavigator,
@@ -12,26 +9,11 @@ import HomeScreen from '../views/HomeScreen'
 import ProfileScreen from '../views/ProfileScreen'
 import StatisticScreen from '../views/StatisticScreen'
 import LoginScreen from '../views/LoginScreen'
-// import RegisterScreen from '../views/RegisterScreen'
 import TaskDetail from '../views/TaskDetail'
-import {
-  Ionicons
-} from '@expo/vector-icons' // 6.2.2
-import {
-  Text,
-  View,
-  StyleSheet
-} from 'react-native';
-import {
-  highLight
-} from '../utils/styles/'
-import {
-  getTabBarIcon
-} from '../components/IconWithBadge'
-import {
-  RegisterBase,
-  RegisterPerson
-} from '../views/Register/'
+import { StyleSheet } from 'react-native';
+import { highLight } from '../utils/styles/'
+import { getTabBarIcon } from '../components/IconWithBadge'
+import { RegisterBase, RegisterPerson } from '../views/Register/'
 
 const styles = StyleSheet.create({
   nav: {
@@ -45,20 +27,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
-
-  },
-  text: {
-    color: 'white',
-  },
-  tab: {
-    backgroundColor: 'red',
-  },
-  label: {
-    backgroundColor: 'green',
   }
-
 })
-
+/**
+ * stack navigation from home page
+ */
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
@@ -71,10 +44,14 @@ const HomeStack = createStackNavigator({
   }
 }, {
 
-  initialRouteName: 'Home',
-  headerMode: 'none',
-})
+    initialRouteName: 'Home',
+    headerMode: 'none',
+  })
 
+
+/**
+* bottom tab navigation start from home
+*/
 const TabNavigator = createBottomTabNavigator({
   'Profile': {
     screen: ProfileScreen
@@ -86,24 +63,24 @@ const TabNavigator = createBottomTabNavigator({
     screen: StatisticScreen
   },
 }, {
-  defaultNavigationOptions: ({
-    navigation
-  }) => ({
-    tabBarIcon: ({
+    defaultNavigationOptions: ({
+      navigation
+    }) => ({
+      tabBarIcon: ({
         focused,
         tintColor
       }) =>
-      getTabBarIcon(navigation, focused, tintColor),
-  }),
-  animationEnabled: 'true',
-  tabBarOptions: {
-    activeTintColor: highLight,
-    inactiveTintColor: 'white',
-    style: styles.nav,
-    showLabel: false,
-  },
-  initialRouteName: 'Home',
-})
+        getTabBarIcon(navigation, focused, tintColor),
+    }),
+    animationEnabled: 'true',
+    tabBarOptions: {
+      activeTintColor: highLight,
+      inactiveTintColor: 'white',
+      style: styles.nav,
+      showLabel: false,
+    },
+    initialRouteName: 'Home',
+  })
 
 const RegisterStack = createStackNavigator({
   'Base': {
@@ -113,11 +90,13 @@ const RegisterStack = createStackNavigator({
     screen: RegisterPerson,
   }
 }, {
-  initialRouteName: 'Base',
-  headerMode: 'none',
-})
+    initialRouteName: 'Base',
+    headerMode: 'none',
+  })
 
-
+/**
+ * App started : starting page
+ */
 const AuthStack = createStackNavigator({
   'Login': LoginScreen
 });
@@ -128,7 +107,7 @@ const switchNavigator = createSwitchNavigator({
   App: TabNavigator,
   Auth: AuthStack,
 }, {
-  initialRouteName: 'Login',
-})
+    initialRouteName: 'Login',
+  })
 
 export default createAppContainer(switchNavigator)
