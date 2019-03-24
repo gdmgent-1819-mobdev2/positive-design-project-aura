@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     fontSize: 24,
     fontWeight: '400',
@@ -21,8 +21,8 @@ const style = StyleSheet.create({
 })
 
 const SecondaryButton = ({text, navigation, route}) => (
-    <TouchableOpacity onPress={() => {navigation(route)}} style={style.container}>
-      <Text style={style.text}>{ text }</Text>
+    <TouchableOpacity onPress={() => {navigation(route)}} style={styles.container}>
+      <Text style={styles.text}>{ text }</Text>
     </TouchableOpacity>
 )
 

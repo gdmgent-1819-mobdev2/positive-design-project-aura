@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Image, View } from "react-native";
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'flex-start',
@@ -19,11 +19,11 @@ const style = StyleSheet.create({
 class Logo extends React.Component {
   render() {
     return (
-      <View style={style.container} >
+      <View style={styles.container} >
         <Image
           source={require("../../assets/icons/logo/logo.png")}
           fadeDuration={0}
-          style={style.icon}
+          style={styles.icon}
         />
       </View>
     );

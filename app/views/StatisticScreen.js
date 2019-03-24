@@ -1,21 +1,17 @@
 import React, { Component } from 'react'
-import { Alert, Text, View, StyleSheet, ScrollView, AsyncStorage } from 'react-native'
+import { Text, View, StyleSheet, AsyncStorage } from 'react-native'
 import { LinearGradient } from 'expo'
-import Card from '../components/Card'
-import Navigation from '../components/Navigation'
 import { Title, SubTitle } from '../components/textComponents/'
-import { mainTextColor, highLight, exellentCardGradient, okayCardGradient, stressGradient, anxiousGradient, exhaustedGradient } from '../utils/styles'
+import { mainTextColor, highLight } from '../utils/styles'
 import DaysContainer from '../components/statistic/DaysContainer'
 import WeeksContainer from '../components/statistic/WeeksContainer'
 import { backGradient } from '../utils/styles'
 import { getInstance } from '../services/firebase/firebase'
 
-
 const firebase = getInstance()
 
 /*TODO: 
 -Get day and weekly average from firebase, if not given = 1
-
 
 **DATA STRUCTURE
 -Click on Emote
@@ -131,7 +127,6 @@ class StatisticScreen extends Component {
             await AsyncStorage.setItem('averages', JSON.stringify(averages))
             this.setState({ averages: JSON.parse(await AsyncStorage.getItem('averages')) })
         });
-        
     }
 
     render() {
