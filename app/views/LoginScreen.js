@@ -98,7 +98,7 @@ class LoginScreen extends Component {
         <View style={styles.view}>
           <Logo />
           <SecondarySubtitle
-            text={"It is not the mountain we conquer but ourselves."}
+            text={"Don't be pushed around by the fears in your mind. Be led by the dreams in your heart."}
             style={styles.center}
           />
         </View>

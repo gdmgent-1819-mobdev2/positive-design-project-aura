@@ -3,15 +3,15 @@ import { Text, StyleSheet } from 'react-native'
 
 const style = StyleSheet.create({
   subtitle: {
-    fontSize: 20,
-    fontWeight: '300',
+    fontSize: 25,
+    fontWeight: '600',
     textAlign: 'center',
     color: '#ffffff',
   }
 })
 
-const SecondarySubtitle = ({ text }) => (
+const ExerciseTitle = ({ text }) => (
   <Text style={style.subtitle}>{text}</Text>
 )
 
-export default SecondarySubtitle
+export default ExerciseTitle
