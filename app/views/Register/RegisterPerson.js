@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert, AsyncStorage } from 'react-native'
 import { SecondarySubtitle, Logo } from '../../components/textComponents';
 import { SecondaryButton } from '../../components/buttonComponents';
 import { getInstance } from '../../services/firebase/firebase'
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: '#ffffff',
-    textAlign: 'center',  
+    textAlign: 'center',
   },
 })
 
@@ -65,7 +65,7 @@ export class RegisterPerson extends Component {
   /**
    * Registers a user and puts his data into db
    */
-  addUserDetails = async() => {
+  addUserDetails = async () => {
     const userDetails = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -74,10 +74,10 @@ export class RegisterPerson extends Component {
     const db = firebase.database()
 
 
-    if (userDetails.firstName == "" || userDetails.lastName == "" ) {
+    if (userDetails.firstName == "" || userDetails.lastName == "") {
       Alert.alert("One or more fields are empty, please check all fields!");
     } else {
-      if(firebase) {
+      if (firebase) {
         try {
           let user = await firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
           const uid = user.user.uid
@@ -111,7 +111,11 @@ export class RegisterPerson extends Component {
               }
             }
           })
-          this.props.navigation.navigate('App')
+
+          await AsyncStorage.setItem('currentUserName', JSON.stringify(userDetails.firstName)).then(() => {
+            this.props.navigation.navigate('App')
+
+          })
         } catch (error) {
           Alert.alert(error)
         }
@@ -129,20 +133,20 @@ export class RegisterPerson extends Component {
           <SecondarySubtitle text={'Now we just need some personal information to get you started on your journey.'} />
         </View>
         <View style={styles.fullWidth}>
-          <TextInput 
-            style={styles.inputField} 
-            onChangeText={(text) => {this.setState({firstName: text})}}
+          <TextInput
+            style={styles.inputField}
+            onChangeText={(text) => { this.setState({ firstName: text }) }}
             placeholder={'First Name'}
           />
-          <TextInput 
-            style={styles.inputField} 
-            onChangeText={(text) => {this.setState({lastName: text})}}
+          <TextInput
+            style={styles.inputField}
+            onChangeText={(text) => { this.setState({ lastName: text }) }}
             placeholder={'Last Name'}
           />
         </View>
         <View>
           <SecondaryButton text={'Cancel'} route={'Login'} navigation={this.props.navigation.navigate} />
-          <TouchableOpacity style={styles.primaryBtn} onPress={() => {this.addUserDetails()}}>
+          <TouchableOpacity style={styles.primaryBtn} onPress={() => { this.addUserDetails() }}>
             <Text style={styles.btnText}>
               Next
             </Text>
